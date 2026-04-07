@@ -229,9 +229,10 @@
                     <li>
                         <a onclick="navigate('about')" class="i18n" data-uk="ПРО НАС ▾" data-en="ABOUT US ▾">ПРО НАС ▾</a>
                         <ul class="dropdown">
-                            <li><a onclick="navigate('about')" class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</a></li>
-                            <li><a onclick="navigate('about')" class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</a></li>
-                            <li><a onclick="navigate('about')" class="i18n" data-uk="Партнери" data-en="Partners">Партнери</a></li>
+                            <!-- Оновлені посилання на підсторінки -->
+                            <li><a onclick="navigate('about-mission')" class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</a></li>
+                            <li><a onclick="navigate('about-team')" class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</a></li>
+                            <li><a onclick="navigate('about-partners')" class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</a></li>
                         </ul>
                     </li>
                     <li>
@@ -286,25 +287,63 @@
             </div>
         </section>
 
-        <!-- 2. ПРО НАС -->
+        <!-- ============================================== -->
+        <!-- 2. ПРО НАС (ГОЛОВНА СТОРІНКА РОЗДІЛУ) -->
+        <!-- ============================================== -->
         <section id="about" class="page-section">
             <div class="page-header">
                 <h1 class="i18n" data-uk="Про Нас" data-en="About Us">Про Нас</h1>
-                <p class="i18n" data-uk="Хто ми і заради чого працюємо" data-en="Who we are and what we work for">Хто ми і заради чого працюємо</p>
+                <p class="i18n" data-uk="Фундамент нашої організації" data-en="The foundation of our organization">Фундамент нашої організації</p>
             </div>
             <div class="container">
                 <div class="mission-text">
-                    <h2 class="i18n" data-uk="Наша Місія" data-en="Our Mission">Наша Місія</h2>
-                    <p class="i18n" data-uk="Благодійна організація &quot;Благодійний Фонд &quot;НОВАТЕРРА&quot; заснована з єдиною ключовою метою: повернути безпеку на українські землі. Ми віримо, що кожен гектар розмінованої території — це врятовані життя фермерів, дітей та відновлення економічного потенціалу держави." data-en="The Charitable Organization &quot;Charitable Fund &quot;NOVATERRA&quot; was founded with a single key goal: to return safety to Ukrainian lands. We believe that every hectare of cleared territory means saved lives of farmers, children, and the restoration of the state's economic potential.">Благодійна організація "Благодійний Фонд "НОВАТЕРРА" заснована з єдиною ключовою метою: повернути безпеку на українські землі. Ми віримо, що кожен гектар розмінованої території — це врятовані життя фермерів, дітей та відновлення економічного потенціалу держави.</p>
+                    <p class="i18n" data-uk="БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує &quot;Нову Землю&quot; — очищену від небезпек, повністю відновлену та готову до процвітання життя." data-en="CHARITABLE FOUNDATION NOVATERRA is a team of like-minded professionals united by a shared vision: creating a safe living environment on Ukrainian soil. Established in early 2026, our foundation emerged not merely as an organization, but as a direct response to the critical challenges facing our ecology and national security. Our name, NovaTerra, symbolizes a &quot;New Earth&quot;—decontaminated from hazards, fully restored, and ready for life to flourish.">БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує "Нову Землю" — очищену від небезпек, повністю відновлену та готову до процвітання життя.</p>
                     
-                    <!-- Використання Header 5.11 як допоміжного зображення в тексті -->
                     <img src="Header 5.11.jpg" alt="Demining Process" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onerror="this.src='https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=1200&auto=format&fit=crop'; this.onerror=null;">
-
-                    <h2 class="i18n" data-uk="Бачення" data-en="Vision">Бачення</h2>
-                    <p class="i18n" data-uk="Ми прагнемо стати провідною організацією у сфері гуманітарного розмінування та екологічного відновлення, інтегруючи інноваційні технології (дрони, ШІ) для пришвидшення очищення територій." data-en="We strive to become a leading organization in the field of humanitarian demining and ecological restoration, integrating innovative technologies (drones, AI) to accelerate the clearance of territories.">Ми прагнемо стати провідною організацією у сфері гуманітарного розмінування та екологічного відновлення, інтегруючи інноваційні технології (дрони, ШІ) для пришвидшення очищення територій.</p>
                 </div>
             </div>
         </section>
+
+        <!-- 2.1 МІСІЯ ТА БАЧЕННЯ (ПІДСТОРІНКА) -->
+        <section id="about-mission" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</h1>
+                <p class="i18n" data-uk="Наші цілі та прагнення" data-en="Our goals and aspirations">Наші цілі та прагнення</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <p class="i18n" data-uk="Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі." data-en="Our mission is to restore a safe and resilient environment in Ukraine by deploying innovative solutions in mine action, ecological recovery, and comprehensive community support. We provide civilian protection against landmine threats, facilitate ecosystem regeneration, and equip local communities with the necessary tools for sustainable development. Every project we undertake is a direct contribution to a secure, green, and sovereign nation—where every individual feels safe and protected in their own home.">Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.2 НАША КОМАНДА (ПІДСТОРІНКА) -->
+        <section id="about-team" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</h1>
+                <p class="i18n" data-uk="Люди, які створюють безпечне майбутнє" data-en="People who create a safe future">Люди, які створюють безпечне майбутнє</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <p class="i18n" data-uk="Ми — команда експертів з протимінної діяльності, екологічної безпеки та розвитку громад." data-en="We are a team of experts in mine action, ecological safety, and community development.">Ми — команда експертів з протимінної діяльності, екологічної безпеки та розвитку громад.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.3 НАШІ ПАРТНЕРИ (ПІДСТОРІНКА) -->
+        <section id="about-partners" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</h1>
+                <p class="i18n" data-uk="Разом ми сильніші" data-en="Together we are stronger">Разом ми сильніші</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <h2 class="i18n" data-uk="Наша екосистема співпраці: Об'єднуємо зусилля у протимінній діяльності" data-en="Our Collaborative Ecosystem: Powering Mine Action Together">Наша екосистема співпраці: Об'єднуємо зусилля у протимінній діяльності</h2>
+                    <p class="i18n" data-uk="Партнерства є основою нашого впливу. Як постачальник ресурсів, NovaTerra долає розрив між ресурсами та технічною експертизою." data-en="Partnerships are the foundation of our impact. As a resource provider, NovaTerra bridges the gap between resources, technical expertise">Партнерства є основою нашого впливу. Як постачальник ресурсів, NovaTerra долає розрив між ресурсами та технічною експертизою.</p>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================== -->
 
         <!-- 3. ДІЯЛЬНІСТЬ -->
         <section id="what-we-do" class="page-section">
