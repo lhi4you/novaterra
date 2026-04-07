@@ -115,15 +115,14 @@
         .home-stats-badge strong { display: block; color: var(--primary-blue); font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; }
         .home-stats-badge span { color: var(--text-dark); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* КАРТКИ (Діяльність / Проєкти) */
-        /* Адаптивна сітка, яка автоматично стискається до 1 колонки на мобільних */
+        /* КАРТКИ (Проєкти) */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .card { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-top: 4px solid var(--primary-blue); transition: all 0.4s ease; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent-yellow); }
         .card h3 { color: var(--primary-blue); margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; line-height: 1.4; }
         .card p { color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 15px; font-weight: 400; }
 
-        /* Секція "Про Нас" Text */
+        /* Секції "Про Нас" / "Діяльність" Text */
         .mission-text { max-width: 900px; margin: 0 auto; text-align: center; font-size: 1.15rem; line-height: 1.9; color: #444; font-weight: 400; }
         .mission-text h2 { color: var(--primary-blue); margin-bottom: 25px; font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         
@@ -155,7 +154,7 @@
         .footer-col h4 { color: white; margin-bottom: 25px; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 15px; }
-        .footer-col a { color: var(--text-gray); transition: 0.3s; font-size: 14px; }
+        .footer-col a { color: var(--text-gray); transition: 0.3s; font-size: 14px; cursor: pointer; }
         .footer-col a:hover { color: var(--accent-yellow); padding-left: 5px; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; color: rgba(204, 214, 246, 0.6); }
 
@@ -229,19 +228,21 @@
                     <li>
                         <a onclick="navigate('about')" class="i18n" data-uk="ПРО НАС ▾" data-en="ABOUT US ▾">ПРО НАС ▾</a>
                         <ul class="dropdown">
-                            <!-- Оновлені посилання на підсторінки -->
+                            <li><a onclick="navigate('about')" class="i18n" data-uk="Про нас" data-en="About Us">Про нас</a></li>
                             <li><a onclick="navigate('about-mission')" class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</a></li>
                             <li><a onclick="navigate('about-team')" class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</a></li>
                             <li><a onclick="navigate('about-partners')" class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</a></li>
                         </ul>
                     </li>
                     <li>
+                        <!-- Клік на Діяльність перекидає на what-we-do (Розмінування) -->
                         <a onclick="navigate('what-we-do')" class="i18n" data-uk="ДІЯЛЬНІСТЬ ▾" data-en="WHAT WE DO ▾">ДІЯЛЬНІСТЬ ▾</a>
                         <ul class="dropdown">
+                            <!-- Підпункти діяльності -->
                             <li><a onclick="navigate('what-we-do')" class="i18n" data-uk="Розмінування та Безпека" data-en="Demining & Safety">Розмінування та Безпека</a></li>
-                            <li><a onclick="navigate('what-we-do')" class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</a></li>
-                            <li><a onclick="navigate('what-we-do')" class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</a></li>
-                            <li><a onclick="navigate('what-we-do')" class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</a></li>
+                            <li><a onclick="navigate('what-we-do-ecology')" class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</a></li>
+                            <li><a onclick="navigate('what-we-do-education')" class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</a></li>
+                            <li><a onclick="navigate('what-we-do-aid')" class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</a></li>
                         </ul>
                     </li>
                     <li><a onclick="navigate('projects')" class="i18n" data-uk="ПРОЄКТИ" data-en="PROJECTS">ПРОЄКТИ</a></li>
@@ -288,7 +289,7 @@
         </section>
 
         <!-- ============================================== -->
-        <!-- 2. ПРО НАС (ГОЛОВНА СТОРІНКА РОЗДІЛУ) -->
+        <!-- 2. ПРО НАС (РОЗДІЛ ТА ПІДСТОРІНКИ) -->
         <!-- ============================================== -->
         <section id="about" class="page-section">
             <div class="page-header">
@@ -298,13 +299,11 @@
             <div class="container">
                 <div class="mission-text">
                     <p class="i18n" data-uk="БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує &quot;Нову Землю&quot; — очищену від небезпек, повністю відновлену та готову до процвітання життя." data-en="CHARITABLE FOUNDATION NOVATERRA is a team of like-minded professionals united by a shared vision: creating a safe living environment on Ukrainian soil. Established in early 2026, our foundation emerged not merely as an organization, but as a direct response to the critical challenges facing our ecology and national security. Our name, NovaTerra, symbolizes a &quot;New Earth&quot;—decontaminated from hazards, fully restored, and ready for life to flourish.">БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує "Нову Землю" — очищену від небезпек, повністю відновлену та готову до процвітання життя.</p>
-                    
                     <img src="Header 5.11.jpg" alt="Demining Process" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" onerror="this.src='https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=1200&auto=format&fit=crop'; this.onerror=null;">
                 </div>
             </div>
         </section>
 
-        <!-- 2.1 МІСІЯ ТА БАЧЕННЯ (ПІДСТОРІНКА) -->
         <section id="about-mission" class="page-section">
             <div class="page-header">
                 <h1 class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</h1>
@@ -317,7 +316,6 @@
             </div>
         </section>
 
-        <!-- 2.2 НАША КОМАНДА (ПІДСТОРІНКА) -->
         <section id="about-team" class="page-section">
             <div class="page-header">
                 <h1 class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</h1>
@@ -330,7 +328,6 @@
             </div>
         </section>
 
-        <!-- 2.3 НАШІ ПАРТНЕРИ (ПІДСТОРІНКА) -->
         <section id="about-partners" class="page-section">
             <div class="page-header">
                 <h1 class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</h1>
@@ -343,33 +340,67 @@
                 </div>
             </div>
         </section>
-        <!-- ============================================== -->
 
-        <!-- 3. ДІЯЛЬНІСТЬ -->
+        <!-- ============================================== -->
+        <!-- 3. ДІЯЛЬНІСТЬ (РОЗДІЛ ТА ПІДСТОРІНКИ) -->
+        <!-- ============================================== -->
+        
+        <!-- Основна сторінка Діяльності (збігається з "Розмінування та Безпека") -->
         <section id="what-we-do" class="page-section">
             <div class="page-header">
-                <h1 class="i18n" data-uk="Що Ми Робимо" data-en="What We Do">Що Ми Робимо</h1>
-                <p class="i18n" data-uk="Наші ключові напрямки діяльності" data-en="Our key areas of activity">Наші ключові напрямки діяльності</p>
+                <h1 class="i18n" data-uk="Розмінування та Безпека" data-en="Demining & Safety">Розмінування та Безпека</h1>
+                <p class="i18n" data-uk="Наш підхід до очищення територій" data-en="Our approach to clearing territories">Наш підхід до очищення територій</p>
             </div>
-            <div class="container grid">
-                <div class="card">
-                    <h3 class="i18n" data-uk="🛡️ Розмінування та Безпека" data-en="🛡️ Demining & Safety">🛡️ Розмінування та Безпека</h3>
-                    <p class="i18n" data-uk="Організація нетехнічного та технічного обстеження територій. Залучення фахівців з гуманітарного розмінування для очищення сільськогосподарських угідь від вибухонебезпечних предметів (ВНП)." data-en="Organization of non-technical and technical surveys of territories. Engaging humanitarian demining specialists to clear agricultural lands from explosive ordnance (EO).">Організація нетехнічного та технічного обстеження територій. Залучення фахівців з гуманітарного розмінування для очищення сільськогосподарських угідь від вибухонебезпечних предметів (ВНП).</p>
-                </div>
-                <div class="card">
-                    <h3 class="i18n" data-uk="🌱 Екологія та Відновлення" data-en="🌱 Ecology & Restoration">🌱 Екологія та Відновлення</h3>
-                    <p class="i18n" data-uk="Аналіз ґрунтів після вибухів (тестування токсичності). Проєкти фіторемедіації — відновлення родючості земель екологічними методами для безпечного фермерства." data-en="Analysis of soils after explosions (toxicity testing). Phytoremediation projects — restoring land fertility through ecological methods for safe farming.">Аналіз ґрунтів після вибухів (тестування токсичності). Проєкти фіторемедіації — відновлення родючості земель екологічними методами для безпечного фермерства.</p>
-                </div>
-                <div class="card">
-                    <h3 class="i18n" data-uk="📚 Освіта (EORE)" data-en="📚 Education (EORE)">📚 Освіта (EORE)</h3>
-                    <p class="i18n" data-uk="Навчання ризикам, пов'язаним з вибухонебезпечними предметами (Explosive Ordnance Risk Education). Розробка інтерактивних модулів для дітей у прифронтових громадах." data-en="Explosive Ordnance Risk Education (EORE). Developing interactive modules for children in frontline communities.">Навчання ризикам, пов'язаним з вибухонебезпечними предметами (Explosive Ordnance Risk Education). Розробка інтерактивних модулів для дітей у прифронтових громадах.</p>
-                </div>
-                <div class="card">
-                    <h3 class="i18n" data-uk="🤝 Гуманітарна Допомога" data-en="🤝 Humanitarian Aid">🤝 Гуманітарна Допомога</h3>
-                    <p class="i18n" data-uk="Підтримка громад, що постраждали від замінування. Допомога фермерським господарствам у відновленні їхньої діяльності на безпечних територіях." data-en="Supporting communities affected by mining. Helping farming enterprises resume their activities on safe territories.">Підтримка громад, що постраждали від замінування. Допомога фермерським господарствам у відновленні їхньої діяльності на безпечних територіях.</p>
+            <div class="container">
+                <div class="mission-text">
+                    <h2 class="i18n" data-uk="Розумне обладнання для безпечніших територій" data-en="Smart Equipment for Safer Terrain">Розумне обладнання для безпечніших територій</h2>
+                    <p class="i18n" data-uk="Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій." data-en="We identify, procure, and deploy cutting-edge demining technologies. Our focus is on high-tech robotic systems, heavy-duty machinery, specialized drones for thermal mapping, and advanced ballistic protection for field operators. By replacing manual labor with remote technology, we exponentially increase safety and operational speed.">Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій.</p>
                 </div>
             </div>
         </section>
+
+        <!-- Екологія та Відновлення -->
+        <section id="what-we-do-ecology" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</h1>
+                <p class="i18n" data-uk="Турбота про навколишнє середовище" data-en="Caring for the environment">Турбота про навколишнє середовище</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <h2 class="i18n" data-uk="Зцілення землі, більше ніж просто розмінування" data-en="Healing the Earth, Beyond De-mining">Зцілення землі, більше ніж просто розмінування</h2>
+                    <p class="i18n" data-uk="Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання." data-en="Our mission is to restore soil health in war-torn regions. We support innovative ecological programs, including toxicity monitoring (heavy metals and explosives residue) and nature-based phytoremediation projects. By partnering with leading environmental scientists, we ensure that cleared lands are revitalized and safely return to sustainable agricultural use.">Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Освіта EORE -->
+        <section id="what-we-do-education" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</h1>
+                <p class="i18n" data-uk="Навчання ризикам щодо мінної небезпеки" data-en="Explosive Ordnance Risk Education">Навчання ризикам щодо мінної небезпеки</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <h2 class="i18n" data-uk="Розширення можливостей громад через знання" data-en="Empowering Communities Through Knowledge">Розширення можливостей громад через знання</h2>
+                    <p class="i18n" data-uk="Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування." data-en="We fund and coordinate Explosive Ordnance Risk Education (EORE) programs, delivering life-saving knowledge to local communities and children. Additionally, we invest in &quot;Capacity Building&quot;: supporting specialized technical training and certification for technical advisors, drone operators, and grant managers to strengthen the national demining infrastructure.">Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Гуманітарна Допомога -->
+        <section id="what-we-do-aid" class="page-section">
+            <div class="page-header">
+                <h1 class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</h1>
+                <p class="i18n" data-uk="Прозора підтримка постраждалих територій" data-en="Transparent support for affected areas">Прозора підтримка постраждалих територій</p>
+            </div>
+            <div class="container">
+                <div class="mission-text">
+                    <h2 class="i18n" data-uk="Прозорий капітал для реального впливу" data-en="Transparent Capital for Impact">Прозорий капітал для реального впливу</h2>
+                    <p class="i18n" data-uk="Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику." data-en="We activate global donor resources and manage them with strict accountability. Our fund strategically allocates grants to verified operational partners and accredited demining NGOs. Every funded project undergoes rigorous financial compliance monitoring and impact auditing, ensuring that resources are used efficiently to clear prioritized high-risk areas.">Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику.</p>
+                </div>
+            </div>
+        </section>
+        <!-- ============================================== -->
 
         <!-- 4. ПРОЄКТИ -->
         <section id="projects" class="page-section">
@@ -467,7 +498,7 @@
                     <div class="card" style="text-align: left;">
                         <h3 class="i18n" data-uk="Банківський переказ (IBAN)" data-en="Bank Transfer (IBAN)">Банківський переказ (IBAN)</h3>
                         <p class="i18n" style="font-family: monospace; font-size: 13px; background: #f4f4f4; padding: 15px; border-radius: 4px; word-break: break-all;" data-uk="БО &quot;БФ &quot;НОВАТЕРРА&quot;<br>ЄДРПОУ: 45996333<br>IBAN: UA0000000000000000000000" data-en="CO &quot;CF &quot;NOVATERRA&quot;<br>EDRPOU: 45996333<br>IBAN: UA0000000000000000000000">БО "БФ "НОВАТЕРРА"<br>ЄДРПОУ: 45996333<br>IBAN: UA0000000000000000000000</p>
-                        <button class="btn-outline i18n" style="width: 100%; border-color: #ddd; color: var(--text-dark); margin-top: 15px;" data-uk="Скопіювати реквізити" data-en="Copy Details">Скопіювати реквізити</button>
+                        <button id="copy-btn" class="btn-outline i18n" style="width: 100%; border-color: #ddd; color: var(--text-dark); margin-top: 15px;" data-uk="Скопіювати реквізити" data-en="Copy Details" onclick="copyBankDetails()">Скопіювати реквізити</button>
                     </div>
                     <div class="card" style="text-align: left; background-color: var(--primary-blue); color: white;">
                         <h3 class="i18n" style="color: var(--accent-yellow);" data-uk="Карткою онлайн" data-en="Credit Card Online">Карткою онлайн</h3>
@@ -562,6 +593,37 @@
             document.getElementById('lang-' + lang).classList.add('active');
             
             document.documentElement.lang = lang;
+        }
+
+        // --- Функція копіювання реквізитів ---
+        function copyBankDetails() {
+            const detailsText = 'БО "БФ "НОВАТЕРРА"\nЄДРПОУ: 45996333\nIBAN: UA0000000000000000000000';
+            
+            // Створюємо приховане текстове поле для копіювання (сумісно з усіма браузерами)
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = detailsText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            tempTextArea.setSelectionRange(0, 99999); // Для мобільних пристроїв
+
+            try {
+                document.execCommand("copy");
+                const copyBtn = document.getElementById("copy-btn");
+                const originalText = copyBtn.innerHTML;
+                
+                // Змінюємо текст кнопки для візуального підтвердження
+                copyBtn.innerHTML = currentLang === 'en' ? 'Copied! ✔' : 'Скопійовано! ✔';
+                copyBtn.style.backgroundColor = 'var(--accent-yellow)';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.backgroundColor = 'transparent';
+                }, 2000);
+            } catch (err) {
+                console.error("Помилка копіювання: ", err);
+            }
+            
+            document.body.removeChild(tempTextArea);
         }
 
         // --- 3. Запасне завантаження фону (на випадок відсутності файлу локально) ---
