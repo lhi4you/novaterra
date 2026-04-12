@@ -640,8 +640,18 @@
             document.body.removeChild(tempTextArea);
         }
 
-        // --- 3. Запасне завантаження фону (на випадок відсутності файлу локально) ---
+        // --- 3. Ініціалізація при завантаженні сторінки ---
         document.addEventListener("DOMContentLoaded", () => {
+            // --- Автоматичне визначення мови браузера ---
+            const browserLang = navigator.language || navigator.userLanguage;
+            // Якщо мова браузера починається з 'uk' (українська), ставимо 'uk', для всіх інших - 'en'
+            if (browserLang.toLowerCase().startsWith('uk')) {
+                changeLanguage('uk');
+            } else {
+                changeLanguage('en');
+            }
+
+            // --- Запасне завантаження фону (на випадок відсутності файлу локально) ---
             const hero = document.querySelector('.hero');
             const img = new Image();
             // Намагаємось завантажити ваш новий референс
