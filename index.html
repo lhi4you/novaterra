@@ -80,6 +80,22 @@
 
         /* Спільні стилі для внутрішніх сторінок */
         .page-header { background-color: var(--primary-blue); color: white; padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        
+        /* ПРЯМОКУТНИЙ БЕЙДЖ (ПІДЗАГОЛОВОК) */
+        .badge {
+            display: inline-block; 
+            padding: 6px 16px; 
+            background: rgba(255, 215, 0, 0.1); 
+            color: var(--accent-yellow);
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Рамка для прямокутного стилю */
+            border-radius: 2px; /* Строгі прямокутні форми */
+            font-size: 12px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 20px;
+        }
+
         .page-header h1 { color: var(--accent-yellow); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
         .page-header p { font-size: 1.2rem; color: var(--text-gray); font-weight: 400; max-width: 600px; margin: 0 auto; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 5% 0; }
@@ -263,6 +279,7 @@
         <section id="home" class="page-section active" style="padding-bottom: 0;">
             <div class="hero">
                 <div class="hero-content">
+                    <span class="badge i18n" style="margin-bottom: 30px;" data-uk="Фонд Відновлення України" data-en="Ukraine Recovery Fund">Фонд Відновлення України</span>
                     <h1>NOVATERRA</h1>
                     <h2 class="i18n" data-uk="Створюємо безпечне майбутнє разом" data-en="Creating a Safer Future Together">Створюємо безпечне майбутнє разом</h2>
                     <p class="i18n" data-uk="Благодійний фонд об'єднує зусилля для захисту життя та природи. Наша мета — очистити українську землю від мінної небезпеки та створити умови для процвітання майбутніх поколінь." data-en="The Charitable Fund unites efforts to protect life and nature. Our goal is to clear the land of danger and create conditions for future generations to thrive.">Благодійний фонд об'єднує зусилля для захисту життя та природи. Наша мета — очистити українську землю від мінної небезпеки та створити умови для процвітання майбутніх поколінь.</p>
@@ -273,6 +290,7 @@
             <div class="home-intro">
                 <div class="home-intro-wrapper">
                     <div class="home-intro-text">
+                        <span class="badge i18n" style="background: rgba(10, 25, 47, 0.05); color: var(--primary-blue); border-color: rgba(10, 25, 47, 0.1); margin-bottom: 15px;" data-uk="Наш Вплив" data-en="Our Impact">Наш Вплив</span>
                         <h2 class="i18n" data-uk="Захищаємо кожне життя на українській землі" data-en="Protecting Every Life on Ukrainian Land">Захищаємо кожне життя на українській землі</h2>
                         <p class="i18n" data-uk="Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього." data-en="Today, thousands of hectares of our land hide deadly danger. Our main mission is to save people's lives, protect children from the mine threat, and return safety to communities. Every demined meter is a step towards preserving our future.">Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього.</p>
                         <button class="btn-outline i18n" style="border-color: var(--primary-blue); color: var(--primary-blue);" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='var(--accent-yellow)';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-blue)';" onclick="navigate('what-we-do')" data-uk="НАШІ НАПРЯМКИ" data-en="OUR FOCUS">НАШІ НАПРЯМКИ</button>
@@ -293,6 +311,7 @@
         <!-- ============================================== -->
         <section id="about" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Хто Ми" data-en="Who We Are">Хто Ми</span>
                 <h1 class="i18n" data-uk="Про Нас" data-en="About Us">Про Нас</h1>
                 <p class="i18n" data-uk="Фундамент нашої організації" data-en="The foundation of our organization">Фундамент нашої організації</p>
             </div>
@@ -307,6 +326,7 @@
 
         <section id="about-mission" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Наша Мета" data-en="Our Goal">Наша Мета</span>
                 <h1 class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</h1>
                 <p class="i18n" data-uk="Наші цілі та прагнення" data-en="Our goals and aspirations">Наші цілі та прагнення</p>
             </div>
@@ -314,12 +334,14 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Захист, Відновлення та Сталий Розвиток" data-en="Protection, Recovery, and Sustainable Development">Захист, Відновлення та Сталий Розвиток</h2>
                     <p class="i18n" data-uk="Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі." data-en="Our mission is to restore a safe and resilient environment in Ukraine by deploying innovative solutions in mine action, ecological recovery, and comprehensive community support. We provide civilian protection against landmine threats, facilitate ecosystem regeneration, and equip local communities with the necessary tools for sustainable development. Every project we undertake is a direct contribution to a secure, green, and sovereign nation—where every individual feels safe and protected in their own home.">Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі.</p>
+                    <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&q=80&w=1200" alt="Nature and safe environment" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
         <section id="about-team" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Експерти" data-en="Experts">Експерти</span>
                 <h1 class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</h1>
                 <p class="i18n" data-uk="Люди, які створюють безпечне майбутнє" data-en="People who create a safe future">Люди, які створюють безпечне майбутнє</p>
             </div>
@@ -327,12 +349,14 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Експерти своєї справи" data-en="Experts in Our Field">Експерти своєї справи</h2>
                     <p class="i18n" data-uk="Ми — команда експертів з протимінної діяльності, екологічної безпеки та розвитку громад." data-en="We are a team of experts in mine action, ecological safety, and community development.">Ми — команда експертів з протимінної діяльності, екологічної безпеки та розвитку громад.</p>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200" alt="Professional team working together" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
         <section id="about-partners" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Співпраця" data-en="Collaboration">Співпраця</span>
                 <h1 class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</h1>
                 <p class="i18n" data-uk="Разом ми сильніші" data-en="Together we are stronger">Разом ми сильніші</p>
             </div>
@@ -340,6 +364,7 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Наша екосистема співпраці: Об'єднуємо зусилля у протимінній діяльності" data-en="Our Collaborative Ecosystem: Powering Mine Action Together">Наша екосистема співпраці: Об'єднуємо зусилля у протимінній діяльності</h2>
                     <p class="i18n" data-uk="Партнерства є основою нашого впливу. Як постачальник ресурсів, NovaTerra долає розрив між ресурсами та технічною експертизою." data-en="Partnerships are the foundation of our impact. As a resource provider, NovaTerra bridges the gap between resources, technical expertise">Партнерства є основою нашого впливу. Як постачальник ресурсів, NovaTerra долає розрив між ресурсами та технічною експертизою.</p>
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200" alt="Partnership and handshake" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
@@ -351,6 +376,7 @@
         <!-- Основна сторінка Діяльності (збігається з "Розмінування та Безпека") -->
         <section id="what-we-do" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Напрямок 01" data-en="Direction 01">Напрямок 01</span>
                 <h1 class="i18n" data-uk="Розмінування та Безпека" data-en="Demining & Safety">Розмінування та Безпека</h1>
                 <p class="i18n" data-uk="Наш підхід до очищення територій" data-en="Our approach to clearing territories">Наш підхід до очищення територій</p>
             </div>
@@ -358,6 +384,7 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Розумне обладнання для безпечніших територій" data-en="Smart Equipment for Safer Terrain">Розумне обладнання для безпечніших територій</h2>
                     <p class="i18n" data-uk="Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій." data-en="We identify, procure, and deploy cutting-edge demining technologies. Our focus is on high-tech robotic systems, heavy-duty machinery, specialized drones for thermal mapping, and advanced ballistic protection for field operators. By replacing manual labor with remote technology, we exponentially increase safety and operational speed.">Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій.</p>
+                    <img src="https://images.unsplash.com/photo-1584483766114-2cea6fac8cea?auto=format&fit=crop&q=80&w=1200" alt="Drone technology in the field" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
@@ -365,6 +392,7 @@
         <!-- Екологія та Відновлення -->
         <section id="what-we-do-ecology" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Напрямок 02" data-en="Direction 02">Напрямок 02</span>
                 <h1 class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</h1>
                 <p class="i18n" data-uk="Турбота про навколишнє середовище" data-en="Caring for the environment">Турбота про навколишнє середовище</p>
             </div>
@@ -372,6 +400,7 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Зцілення землі, більше ніж просто розмінування" data-en="Healing the Earth, Beyond De-mining">Зцілення землі, більше ніж просто розмінування</h2>
                     <p class="i18n" data-uk="Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання." data-en="Our mission is to restore soil health in war-torn regions. We support innovative ecological programs, including toxicity monitoring (heavy metals and explosives residue) and nature-based phytoremediation projects. By partnering with leading environmental scientists, we ensure that cleared lands are revitalized and safely return to sustainable agricultural use.">Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання.</p>
+                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=1200" alt="Ecological restoration and soil sprout" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
@@ -379,6 +408,7 @@
         <!-- Освіта EORE -->
         <section id="what-we-do-education" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Напрямок 03" data-en="Direction 03">Напрямок 03</span>
                 <h1 class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</h1>
                 <p class="i18n" data-uk="Навчання ризикам щодо мінної небезпеки" data-en="Explosive Ordnance Risk Education">Навчання ризикам щодо мінної небезпеки</p>
             </div>
@@ -386,6 +416,7 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Розширення можливостей громад через знання" data-en="Empowering Communities Through Knowledge">Розширення можливостей громад через знання</h2>
                     <p class="i18n" data-uk="Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування." data-en="We fund and coordinate Explosive Ordnance Risk Education (EORE) programs, delivering life-saving knowledge to local communities and children. Additionally, we invest in &quot;Capacity Building&quot;: supporting specialized technical training and certification for technical advisors, drone operators, and grant managers to strengthen the national demining infrastructure.">Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування.</p>
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1200" alt="Education and learning" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
@@ -393,6 +424,7 @@
         <!-- Гуманітарна Допомога -->
         <section id="what-we-do-aid" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Напрямок 04" data-en="Direction 04">Напрямок 04</span>
                 <h1 class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</h1>
                 <p class="i18n" data-uk="Прозора підтримка постраждалих територій" data-en="Transparent support for affected areas">Прозора підтримка постраждалих територій</p>
             </div>
@@ -400,6 +432,7 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Прозорий капітал для реального впливу" data-en="Transparent Capital for Impact">Прозорий капітал для реального впливу</h2>
                     <p class="i18n" data-uk="Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику." data-en="We activate global donor resources and manage them with strict accountability. Our fund strategically allocates grants to verified operational partners and accredited demining NGOs. Every funded project undergoes rigorous financial compliance monitoring and impact auditing, ensuring that resources are used efficiently to clear prioritized high-risk areas.">Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику.</p>
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200" alt="Humanitarian aid and community support" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
@@ -408,6 +441,7 @@
         <!-- 4. ПРОЄКТИ -->
         <section id="projects" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Портфоліо" data-en="Portfolio">Портфоліо</span>
                 <h1 class="i18n" data-uk="Наші Проєкти" data-en="Our Projects">Наші Проєкти</h1>
                 <p class="i18n" data-uk="Поточні ініціативи фонду" data-en="Current initiatives of the foundation">Поточні ініціативи фонду</p>
             </div>
@@ -432,6 +466,7 @@
         <!-- 5. ЗВІТИ -->
         <section id="reports" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Прозорість" data-en="Transparency">Прозорість</span>
                 <h1 class="i18n" data-uk="Фінансова Звітність" data-en="Financial Reports">Фінансова Звітність</h1>
                 <p class="i18n" data-uk="Прозорість та результативність нашої роботи" data-en="Our Financial Transparency & Operational Impact">Прозорість та результативність нашої роботи</p>
             </div>
@@ -448,6 +483,7 @@
         <!-- 6. КОНТАКТИ -->
         <section id="contacts" class="page-section">
             <div class="page-header">
+                <span class="badge i18n" data-uk="Зв'язок" data-en="Get in touch">Зв'язок</span>
                 <h1 class="i18n" data-uk="Контакти" data-en="Contacts">Контакти</h1>
                 <p class="i18n" data-uk="Зв'яжіться з нами для партнерства чи підтримки" data-en="Contact us for partnership or support">Зв'яжіться з нами для партнерства чи підтримки</p>
             </div>
@@ -490,6 +526,7 @@
         <!-- 7. ПІДТРИМАТИ (DONATE) -->
         <section id="donate" class="page-section">
             <div class="page-header" style="background-color: var(--primary-blue); border-bottom: 5px solid var(--accent-yellow);">
+                <span class="badge i18n" data-uk="Донат" data-en="Donate">Донат</span>
                 <h1 class="i18n" style="color: var(--text-light);" data-uk="Підтримати Розмінування" data-en="Support Demining">Підтримати Розмінування</h1>
                 <p class="i18n" data-uk="Ваш внесок рятує життя та повертає землі до життя" data-en="Your contribution saves lives and brings land back to life">Ваш внесок рятує життя та повертає землі до життя</p>
             </div>
