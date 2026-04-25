@@ -102,7 +102,7 @@
 
         /* ГОЛОВНА СТОРІНКА (HERO) */
         .hero {
-            background: linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('Header 5.11.jpg') no-repeat center center/cover;
+            background: linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('Header 5.12.webp') no-repeat center center/cover;
             height: 85vh; min-height: 600px; display: flex; align-items: center; padding: 0 5%; color: white;
             position: relative;
         }
@@ -271,7 +271,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>'
+        </div>
     </header>
 
     <main>
@@ -290,7 +290,6 @@
             <div class="home-intro">
                 <div class="home-intro-wrapper">
                     <div class="home-intro-text">
-                        <span class="badge i18n" style="background: rgba(10, 25, 47, 0.05); color: var(--primary-blue); border-color: rgba(10, 25, 47, 0.1); margin-bottom: 15px;" data-uk="Наш Вплив" data-en="Our Impact">Наш Вплив</span>
                         <h2 class="i18n" data-uk="Захищаємо кожне життя на українській землі" data-en="Protecting Every Life on Ukrainian Land">Захищаємо кожне життя на українській землі</h2>
                         <p class="i18n" data-uk="Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього." data-en="Today, thousands of hectares of our land hide deadly danger. Our main mission is to save people's lives, protect children from the mine threat, and return safety to communities. Every demined meter is a step towards preserving our future.">Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього.</p>
                         <button class="btn-outline i18n" style="border-color: var(--primary-blue); color: var(--primary-blue);" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='var(--accent-yellow)';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-blue)';" onclick="navigate('what-we-do')" data-uk="НАШІ НАПРЯМКИ" data-en="OUR FOCUS">НАШІ НАПРЯМКИ</button>
@@ -688,10 +687,10 @@
             const hero = document.querySelector('.hero');
             const img = new Image();
             // Намагаємось завантажити ваш новий референс
-            img.src = 'Header 5.11.jpg';
+            img.src = 'Header 5.12.webp';
             img.onerror = () => {
                 // Якщо його немає в папці, ставимо схожий епічний темний фон з інтернету для демонстрації
-                hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://image.pollinations.ai/prompt/demined%20field%20ukraine%20epic%20dark?width=2000&height=1000&nologo=true')";
+                hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=2000&auto=format&fit=crop')";
             };
         });
     </script>
