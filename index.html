@@ -551,7 +551,7 @@
                 
                 <div class="contact-form">
                     <h3 class="i18n" data-uk="Напишіть нам" data-en="Contact Form">Напишіть нам</h3>
-                    <form action="https://formspree.io/f/mdabedpz" method="POST" id="contactForm">
+                    <form action="https://script.google.com/macros/s/AKfycbwM37ZzcDNzQzBIMKHhHNFFVMQc17gwh3tS0mgFkCdqvBqftx8hJeRjFc8MbBHIExCRIw/exec" method="POST" id="contactForm">
                         <div class="form-group">
                             <label class="i18n" data-uk="Ваше ім'я" data-en="Name">Ваше ім'я</label>
                             <input type="text" name="name" id="contact-name" class="i18n-placeholder" required data-uk="Введіть ваше ім'я" data-en="Enter your name" placeholder="Введіть ваше ім'я">
@@ -740,19 +740,19 @@
                 hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=2000&auto=format&fit=crop')";
             };
             
-            // --- Обробка відправки форми через AJAX для Formspree ---
+            // --- Обробка відправки форми через AJAX для Google Apps Script ---
             const form = document.getElementById('contactForm');
             if(form) {
                 form.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Зупиняємо стандартне перенаправлення Formspree
+                    event.preventDefault(); // Зупиняємо стандартне перенаправлення
                     
                     const btn = form.querySelector('button[type="submit"]');
                     const originalBtnText = btn.innerHTML;
                     const isEnglish = document.getElementById('lang-en').classList.contains('active');
-                    
-                    // Перевірка на заглушку
-                    if (form.action.includes('YOUR_FORM_ID') || form.action.includes('xbjnrvvj')) {
-                        alert(isEnglish ? 'Please replace YOUR_FORM_ID with your actual Formspree ID in the HTML code.' : 'Будь ласка, замініть YOUR_FORM_ID на ваш справжній ID з Formspree у HTML коді.');
+
+                    // Перевірка на наявність правильного посилання Google Script (щоб не забули замінити)
+                    if (!form.action.includes('script.google.com/macros/s/')) {
+                        alert(isEnglish ? 'Please ensure your Google Script URL is set in the form action.' : 'Будь ласка, переконайтесь, що ви встановили правильне посилання Google Script у формі.');
                         return;
                     }
 
@@ -761,25 +761,22 @@
                     btn.style.opacity = '0.7';
 
                     const formData = new FormData(form);
+                    
+                    // Форматуємо дані як URLSearchParams (ідеально для кирилиці та Google Apps Script)
+                    const data = new URLSearchParams();
+                    for (const pair of formData) {
+                        data.append(pair[0], pair[1]);
+                    }
 
                     fetch(form.action, {
                         method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        body: data
                     }).then(response => {
                         if (response.ok) {
                             alert(isEnglish ? 'Thank you! Your message has been sent successfully.' : 'Дякуємо! Ваше повідомлення успішно надіслано.');
                             form.reset();
                         } else {
-                            response.json().then(data => {
-                                if (Object.hasOwn(data, 'errors')) {
-                                    alert(data["errors"].map(error => error["message"]).join(", "));
-                                } else {
-                                    alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
-                                }
-                            });
+                            throw new Error('Network response was not ok.');
                         }
                     }).catch(error => {
                         alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
