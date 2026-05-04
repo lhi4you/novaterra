@@ -551,18 +551,18 @@
                 
                 <div class="contact-form">
                     <h3 class="i18n" data-uk="Напишіть нам" data-en="Contact Form">Напишіть нам</h3>
-                    <form id="contactForm" onsubmit="submitContactForm(event)">
+                    <form action="https://formspree.io/f/xbjnrvvj" method="POST" id="contactForm">
                         <div class="form-group">
                             <label class="i18n" data-uk="Ваше ім'я" data-en="Name">Ваше ім'я</label>
-                            <input type="text" id="contact-name" class="i18n-placeholder" required data-uk="Введіть ваше ім'я" data-en="Enter your name" placeholder="Введіть ваше ім'я">
+                            <input type="text" name="name" id="contact-name" class="i18n-placeholder" required data-uk="Введіть ваше ім'я" data-en="Enter your name" placeholder="Введіть ваше ім'я">
                         </div>
                         <div class="form-group">
                             <label class="i18n" data-uk="Email або Телефон" data-en="Email or Phone">Email або Телефон</label>
-                            <input type="text" id="contact-info" class="i18n-placeholder" required data-uk="Ваші контактні дані" data-en="Your contact details" placeholder="Ваші контактні дані">
+                            <input type="text" name="contact_info" id="contact-info" class="i18n-placeholder" required data-uk="Ваші контактні дані" data-en="Your contact details" placeholder="Ваші контактні дані">
                         </div>
                         <div class="form-group">
                             <label class="i18n" data-uk="Повідомлення" data-en="Message">Повідомлення</label>
-                            <textarea id="contact-message" class="i18n-placeholder" required data-uk="Як ми можемо співпрацювати?" data-en="How can we collaborate?" placeholder="Як ми можемо співпрацювати?"></textarea>
+                            <textarea name="message" id="contact-message" class="i18n-placeholder" required data-uk="Як ми можемо співпрацювати?" data-en="How can we collaborate?" placeholder="Як ми можемо співпрацювати?"></textarea>
                         </div>
                         <button type="submit" class="btn-donate i18n" style="width: 100%; padding: 16px;" data-uk="НАДІСЛАТИ ПОВІДОМЛЕННЯ" data-en="SEND MESSAGE">НАДІСЛАТИ ПОВІДОМЛЕННЯ</button>
                     </form>
@@ -581,7 +581,7 @@
                 <h2 class="i18n" style="font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 15px;" data-uk="Реквізити для внесків" data-en="Donation Details">Реквізити для внесків</h2>
                 <p class="i18n" style="margin-bottom: 40px; font-size: 1.15rem; color: #555;" data-uk="Оберіть зручний для вас спосіб підтримати нашу місію." data-en="Choose a convenient way to support our mission.">Оберіть зручний для вас спосіб підтримати нашу місію.</p>
                 
-                <!-- Залишено тільки 2 блоки: Банківський переказ та Картка онлайн -->
+                <!-- Залишено тільки 2 blocks: Банківський переказ та Картка онлайн -->
                 <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                     <div class="card" style="text-align: left;">
                         <h3 class="i18n" data-uk="Банківський переказ (IBAN)" data-en="Bank Transfer (IBAN)">Банківський переказ (IBAN)</h3>
@@ -719,30 +719,6 @@
             document.body.removeChild(tempTextArea);
         }
 
-        // --- Надсилання форми контактів ---
-        function submitContactForm(event) {
-            event.preventDefault(); // Зупиняємо стандартне оновлення сторінки
-            
-            // Отримуємо значення з полів форми
-            const name = document.getElementById('contact-name').value;
-            const info = document.getElementById('contact-info').value;
-            const message = document.getElementById('contact-message').value;
-            
-            // Формуємо тему та тіло листа
-            const subject = encodeURIComponent("Нове повідомлення з сайту NOVATERRA від " + name);
-            const body = encodeURIComponent("Ім'я: " + name + "\nКонтакти: " + info + "\n\nПовідомлення:\n" + message);
-            
-            // Відкриваємо поштовий клієнт користувача з попередньо заповненими даними
-            window.location.href = "mailto:office@novaterra.org.ua?subject=" + subject + "&body=" + body;
-            
-            // Показуємо повідомлення користувачу
-            const isEnglish = document.getElementById('lang-en').classList.contains('active');
-            alert(isEnglish ? 'Opening your email client to send the message...' : 'Відкриваємо ваш поштовий клієнт для надсилання повідомлення...');
-            
-            // Очищуємо форму після відправки
-            document.getElementById('contactForm').reset();
-        }
-
         // --- 3. Ініціалізація при завантаженні сторінки ---
         document.addEventListener("DOMContentLoaded", () => {
             // --- Автоматичне визначення мови браузера ---
@@ -763,6 +739,51 @@
                 // Якщо його немає в папці, ставимо схожий епічний темний фон з інтернету для демонстрації
                 hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=2000&auto=format&fit=crop')";
             };
+            
+            // --- Обробка відправки форми через AJAX для Formspree ---
+            const form = document.getElementById('contactForm');
+            if(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Зупиняємо стандартне перенаправлення Formspree
+                    
+                    const btn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = btn.innerHTML;
+                    const isEnglish = document.getElementById('lang-en').classList.contains('active');
+                    
+                    btn.innerHTML = isEnglish ? 'SENDING...' : 'НАДСИЛАЄТЬСЯ...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+
+                    const formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            alert(isEnglish ? 'Thank you! Your message has been sent successfully.' : 'Дякуємо! Ваше повідомлення успішно надіслано.');
+                            form.reset();
+                        } else {
+                            response.json().then(data => {
+                                if (Object.hasOwn(data, 'errors')) {
+                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                                } else {
+                                    alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
+                                }
+                            });
+                        }
+                    }).catch(error => {
+                        alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
+                    }).finally(() => {
+                        btn.innerHTML = originalBtnText;
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                    });
+                });
+            }
         });
     </script>
 </body>
