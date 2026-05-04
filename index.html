@@ -31,7 +31,7 @@
     <!-- Theme color для мобільних браузерів -->
     <meta name="theme-color" content="#0A192F">
 
-    <!-- Favicons (Іконки сайту) - Додано ?v=2 для скидання кешу браузера -->
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2">
@@ -43,7 +43,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Структуровані дані Schema.org для пошукових систем -->
+    <!-- Структуровані дані Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -82,17 +82,20 @@
         header { background-color: var(--primary-blue); color: var(--text-light); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.3); width: 100%; }
         
         .main-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: relative; }
-        .logo img { height: 55px; cursor: pointer; transition: transform 0.3s ease; }
+        /* Покращено доступність логотипу */
+        .logo { cursor: pointer; outline: none; }
+        .logo:focus-visible { outline: 3px solid var(--accent-yellow); border-radius: 4px; }
+        .logo img { height: 55px; transition: transform 0.3s ease; display: block; }
         .logo img:hover { transform: scale(1.02); }
         
-        /* Гамбургер-меню (приховане на десктопі) */
+        /* Гамбургер-меню */
         .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 5px; z-index: 1001; }
         .menu-toggle span { display: block; width: 30px; height: 3px; background-color: var(--accent-yellow); border-radius: 2px; transition: 0.3s; }
         
         /* Навігація */
         nav ul { list-style: none; display: flex; align-items: center; gap: 30px; margin: 0; }
         nav > ul > li { position: relative; padding: 10px 0; }
-        nav a { color: var(--text-light); font-size: 13px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; cursor: pointer; }
+        nav a { color: var(--text-light); font-size: 13px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; cursor: pointer; outline: none;}
         nav a:hover, nav a.active-link { color: var(--accent-yellow); }
 
         /* Випадаюче меню */
@@ -102,14 +105,18 @@
             opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(15px);
             border-top: 3px solid var(--accent-yellow); border-radius: 0 0 4px 4px;
         }
-        nav li:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        
+        /* Адаптація для клавіатури: показувати меню при фокусі */
+        nav li:hover .dropdown, 
+        nav li:focus-within .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        
         .dropdown li { padding: 0; }
         .dropdown a { 
             display: block; padding: 14px 25px; color: var(--text-light); 
             text-transform: none; font-size: 14px; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.05);
             letter-spacing: 0;
         }
-        .dropdown a:hover { background-color: rgba(255,255,255,0.05); color: var(--accent-yellow); padding-left: 30px; }
+        .dropdown a:hover, .dropdown a:focus { background-color: rgba(255,255,255,0.05); color: var(--accent-yellow); padding-left: 30px; }
 
         .btn-donate { 
             background-color: var(--accent-yellow); color: var(--primary-blue); 
@@ -117,12 +124,11 @@
             text-transform: uppercase; letter-spacing: 1px; font-size: 13px;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2); transition: all 0.3s ease; white-space: nowrap;
         }
-        .btn-donate:hover { background-color: var(--accent-hover); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
+        .btn-donate:hover, .btn-donate:focus-visible { background-color: var(--accent-hover); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4); transform: translateY(-2px); }
 
-        /* ПЕРЕМИКАЧ МОВИ В МЕНЮ */
         .lang-switcher { display: flex; align-items: center; justify-content: center; color: var(--text-gray); font-weight: 700; font-size: 13px; margin-left: 10px; }
         .lang-switcher a { color: var(--text-gray); transition: 0.2s; padding: 0 !important; border: none !important; font-size: 14px; letter-spacing: 0.5px; display: inline-block; width: auto; }
-        .lang-switcher a:hover { color: var(--text-light); background: transparent !important; }
+        .lang-switcher a:hover, .lang-switcher a:focus { color: var(--text-light); background: transparent !important; }
         .lang-switcher a.active { color: var(--accent-yellow); }
 
         /* КОНТЕНТНІ СЕКЦІЇ (SPA) */
@@ -131,17 +137,15 @@
         .page-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Спільні стилі для внутрішніх сторінок */
         .page-header { background-color: var(--primary-blue); color: white; padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         
-        /* ПРЯМОКУТНИЙ БЕЙДЖ (ПІДЗАГОЛОВОК) */
         .badge {
             display: inline-block; 
             padding: 6px 16px; 
             background: rgba(255, 215, 0, 0.1); 
             color: var(--accent-yellow);
-            border: 1px solid rgba(255, 215, 0, 0.3); /* Рамка для прямокутного стилю */
-            border-radius: 2px; /* Строгі прямокутні форми */
+            border: 1px solid rgba(255, 215, 0, 0.3); 
+            border-radius: 2px; 
             font-size: 12px; 
             font-weight: 700; 
             text-transform: uppercase; 
@@ -153,14 +157,13 @@
         .page-header p { font-size: 1.2rem; color: var(--text-gray); font-weight: 400; max-width: 600px; margin: 0 auto; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 5% 0; }
 
-        /* ГОЛОВНА СТОРІНКА (HERO) */
+        /* HERO */
         .hero {
             background: linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('Header 5.12.webp') no-repeat center center/cover;
             height: 85vh; min-height: 600px; display: flex; align-items: center; padding: 0 5%; color: white;
             position: relative;
         }
         .hero-content { max-width: 700px; }
-        /* Використання clamp() для адаптивного розміру тексту */
         .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 15px; color: var(--accent-yellow); font-weight: 800; line-height: 1.1; letter-spacing: 1px; text-transform: uppercase; }
         .hero-content h2 { font-size: clamp(1.4rem, 4vw, 2.2rem); margin-bottom: 25px; font-weight: 600; line-height: 1.3; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .hero-content p { font-size: clamp(1rem, 2.5vw, 1.15rem); margin-bottom: 40px; line-height: 1.8; color: var(--text-gray); font-weight: 400; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
@@ -170,9 +173,9 @@
             font-size: 14px; border-radius: 3px; font-weight: 700; background: transparent; cursor: pointer;
             text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; display: inline-block;
         }
-        .btn-outline:hover { background: var(--accent-yellow); color: var(--primary-blue); box-shadow: 0 5px 15px rgba(255,215,0,0.3); }
+        .btn-outline:hover, .btn-outline:focus-visible { background: var(--accent-yellow); color: var(--primary-blue); box-shadow: 0 5px 15px rgba(255,215,0,0.3); }
 
-        /* ДОДАТКОВИЙ БЛОК НА ГОЛОВНІЙ (HOME INTRO) */
+        /* HOME INTRO */
         .home-intro { padding: 100px 5%; background-color: var(--text-light); }
         .home-intro-wrapper { display: flex; flex-wrap: wrap; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
         .home-intro-text { flex: 1; min-width: 300px; }
@@ -184,21 +187,19 @@
         .home-stats-badge strong { display: block; color: var(--primary-blue); font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; }
         .home-stats-badge span { color: var(--text-dark); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* КАРТКИ (Проєкти / Команда) */
+        /* GRID / CARDS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .card { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-top: 4px solid var(--primary-blue); transition: all 0.4s ease; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent-yellow); }
         .card h3 { color: var(--primary-blue); margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; line-height: 1.4; }
         .card p { color: #555; line-height: 1.7; margin-bottom: 25px; font-size: 15px; font-weight: 400; }
 
-        /* Секції "Про Нас" / "Діяльність" Text */
         .mission-text { max-width: 900px; margin: 0 auto; text-align: center; font-size: 1.15rem; line-height: 1.9; color: #444; font-weight: 400; }
         .mission-text h2 { color: var(--primary-blue); margin-bottom: 25px; font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         
         /* КОНТАКТИ */
         .contact-wrapper { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 20px; }
         .contact-info, .contact-form { flex: 1; min-width: 100%; background: white; padding: 40px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
-        /* Змінюємо мінімальну ширину для планшетів та десктопів */
         @media(min-width: 768px) {
             .contact-info { min-width: 300px; }
             .contact-form { min-width: 400px; flex: 2; }
@@ -215,7 +216,7 @@
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-blue); background-color: #fff; }
         .form-group textarea { height: 150px; resize: vertical; }
 
-        /* ПІДВАЛ (FOOTER) */
+        /* ПІДВАЛ */
         footer { background-color: var(--primary-blue); color: var(--text-gray); padding: 60px 5% 30px; border-top: 5px solid var(--accent-yellow); }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; max-width: 1200px; margin-left: auto; margin-right: auto; }
         .footer-col { flex: 1; min-width: 250px; }
@@ -223,19 +224,18 @@
         .footer-col h4 { color: white; margin-bottom: 25px; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 15px; }
-        .footer-col a { color: var(--text-gray); transition: 0.3s; font-size: 14px; cursor: pointer; }
-        .footer-col a:hover { color: var(--accent-yellow); padding-left: 5px; }
+        .footer-col a { color: var(--text-gray); transition: 0.3s; font-size: 14px; cursor: pointer; outline: none; }
+        .footer-col a:hover, .footer-col a:focus-visible { color: var(--accent-yellow); padding-left: 5px; }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; color: rgba(204, 214, 246, 0.6); }
 
         /* ==========================================================
-           АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ (MOBILE RESPONSIVE) 
+           АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ
            ========================================================== */
         @media (max-width: 992px) {
-            /* Шапка і Навігація */
-            .menu-toggle { display: flex; } /* Показуємо гамбургер */
+            .menu-toggle { display: flex; }
             
             nav { width: 100%; position: absolute; top: 100%; left: 0; background-color: var(--primary-blue); border-top: 1px solid rgba(255,255,255,0.1); display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-            nav.nav-open { display: block; } /* Відкриваємо меню через JS */
+            nav.nav-open { display: block; }
             
             nav ul { flex-direction: column; align-items: flex-start; gap: 0; width: 100%; padding: 10px 0; }
             nav > ul > li { width: 100%; padding: 0; }
@@ -243,18 +243,16 @@
             
             /* Мобільні випадаючі списки */
             .dropdown { position: static; box-shadow: none; opacity: 1; visibility: visible; display: none; background: rgba(0,0,0,0.2); border: none; padding-left: 20px; transform: none; min-width: 100%; }
-            nav li:hover .dropdown, nav li:active .dropdown { display: block; }
+            nav li.mobile-dropdown-open .dropdown { display: block; } /* Відкриваємо по кліку через JS */
             .dropdown a { padding: 12px 5%; border-bottom: 1px solid rgba(255,255,255,0.02); }
 
             .lang-switcher { padding: 15px 5%; justify-content: flex-start; border-bottom: 1px solid rgba(255,255,255,0.05); margin-left: 0; }
             .lang-switcher a { display: inline-block; width: auto; padding: 0 5px !important; border: none !important; }
 
-            /* Відступи секцій */
             .page-section { padding-bottom: 50px; }
             .page-header { padding: 60px 5% 40px; }
             .container { padding: 40px 5% 0; }
             
-            /* Hero секція */
             .hero { height: auto; padding: 120px 5% 80px; text-align: center; background-position: center; }
             .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10, 25, 47, 0.75); z-index: 0; }
             .hero-content { position: relative; z-index: 1; margin: 0 auto; }
@@ -262,11 +260,9 @@
             .home-intro { padding: 60px 5%; }
             .home-stats-badge { left: 10px; bottom: -20px; padding: 20px; }
             
-            /* Картки */
             .card { padding: 30px; }
         }
 
-        /* Телефони (дуже маленькі екрани) */
         @media (max-width: 576px) {
             .hero-content h1 { font-size: 2.2rem; }
             .btn-outline, .btn-donate { width: 100%; text-align: center; }
@@ -274,49 +270,112 @@
             .footer-col { min-width: 100%; text-align: center; }
             .footer-col ul li { margin-bottom: 10px; }
         }
+
+        /* TOAST NOTIFICATIONS */
+        .toast-container { position: fixed; top: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; max-width: calc(100vw - 48px); pointer-events: none; }
+        .toast { background: white; color: var(--text-dark); padding: 16px 20px; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: flex; align-items: flex-start; gap: 12px; min-width: 300px; max-width: 420px; border-left: 4px solid var(--accent-yellow); animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto; }
+        .toast.toast-success { border-left-color: #10b981; }
+        .toast.toast-error { border-left-color: #ef4444; }
+        .toast.toast-info { border-left-color: var(--primary-blue); }
+        .toast.removing { animation: toastSlideOut 0.3s ease forwards; }
+        .toast-icon { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; color: var(--primary-blue); }
+        .toast-message { font-size: 13px; color: #555; line-height: 1.5; }
+        .toast-close { background: none; border: none; cursor: pointer; color: #999; font-size: 20px; line-height: 1; padding: 0; flex-shrink: 0; transition: color 0.2s; }
+        .toast-close:hover { color: var(--text-dark); }
+        @keyframes toastSlideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes toastSlideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+        @media (max-width: 576px) { .toast-container { left: 16px; right: 16px; top: 16px; } .toast { min-width: 0; max-width: 100%; } }
+
+        /* SPINNER */
+        .btn-spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(10, 25, 47, 0.2); border-top-color: var(--primary-blue); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ДОСТУПНІСТЬ (FOCUS, SKIP LINK) */
+        *:focus { outline: none; }
+        *:focus-visible { outline: 3px solid var(--accent-yellow); outline-offset: 2px; border-radius: 2px; }
+        .form-group input:focus-visible, .form-group textarea:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 1px; }
+        .skip-link { position: absolute; top: -40px; left: 8px; background: var(--accent-yellow); color: var(--primary-blue); padding: 8px 16px; z-index: 10000; font-weight: 700; text-decoration: none; border-radius: 3px; transition: top 0.2s; }
+        .skip-link:focus { top: 8px; }
+
+        /* АКТИВНИЙ ПУНКТ МЕНЮ */
+        nav a.active-link { color: var(--accent-yellow); position: relative; }
+        @media (min-width: 993px) {
+            nav > ul > li > a.active-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--accent-yellow); animation: navUnderline 0.3s ease; }
+            @keyframes navUnderline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        }
+
+        /* АНІМАЦІЯ ГАМБУРГЕР-МЕНЮ */
+        .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        /* СКРОЛ-ІНДИКАТОР */
+        .hero-scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--accent-yellow); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 8px; animation: bounceDown 2s ease-in-out infinite; cursor: pointer; z-index: 2; opacity: 0.85; transition: opacity 0.3s; }
+        .hero-scroll-indicator:hover, .hero-scroll-indicator:focus-visible { opacity: 1; }
+        .hero-scroll-indicator svg { width: 20px; height: 20px; }
+        @keyframes bounceDown { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        @media (max-width: 992px) { .hero-scroll-indicator { display: none; } }
+
+        /* КНОПКА ВГОРУ */
+        .scroll-to-top { position: fixed; bottom: 30px; right: 30px; z-index: 999; width: 48px; height: 48px; border-radius: 3px; background: var(--accent-yellow); color: var(--primary-blue); border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; }
+        .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .scroll-to-top:hover, .scroll-to-top:focus-visible { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+        .scroll-to-top svg { width: 22px; height: 22px; }
+        @media (max-width: 576px) { .scroll-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; } }
+
+        /* АНІМАЦІЇ ПОЯВИ */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .reveal { opacity: 1; transform: none; } }
+
+        .form-group input:invalid:not(:placeholder-shown), .form-group textarea:invalid:not(:placeholder-shown) { border-color: #ef4444; }
+        .form-helper-text { font-size: 12px; color: #888; margin-top: 6px; display: block; }
     </style>
 </head>
 <body>
 
-    <!-- ШАПКА -->
+    <!-- Skip link для accessibility -->
+    <a href="#main-content" class="skip-link i18n" data-uk="Перейти до основного вмісту" data-en="Skip to main content">Перейти до основного вмісту</a>
+
+    <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
     <header>
         <div class="main-nav">
-            <div class="logo" onclick="navigate('home')">
+            <!-- Зроблено логотип доступним для клавіатури -->
+            <div class="logo" tabindex="0" onclick="navigate('home')" onkeydown="if(event.key === 'Enter') navigate('home')" aria-label="Go to homepage">
                 <img src="Logo 7.16 W.png" alt="NOVATERRA Logo" onerror="this.src='https://placehold.co/250x60/0A192F/FFD700?text=NOVATERRA'; this.onerror=null;">
             </div>
             
-            <!-- Гамбургер кнопка для мобільних -->
-            <div class="menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="menu-toggle" id="menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav" style="background: none; border: none;">
+                <span></span><span></span><span></span>
+            </button>
 
             <nav id="mobile-nav">
                 <ul>
+                    <!-- Додано href="javascript:void(0)" для правильної роботи фокусу клавіатури -->
                     <li>
-                        <a onclick="navigate('about')" class="i18n" data-uk="ПРО НАС ▾" data-en="ABOUT US ▾">ПРО НАС ▾</a>
+                        <a href="javascript:void(0)" onclick="handleNavClick(event, 'about')" class="i18n has-dropdown" data-uk="ПРО НАС ▾" data-en="ABOUT US ▾">ПРО НАС ▾</a>
                         <ul class="dropdown">
-                            <li><a onclick="navigate('about')" class="i18n" data-uk="Про нас" data-en="About Us">Про нас</a></li>
-                            <li><a onclick="navigate('about-mission')" class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</a></li>
-                            <li><a onclick="navigate('about-team')" class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</a></li>
-                            <li><a onclick="navigate('about-partners')" class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('about')" class="i18n" data-uk="Про нас" data-en="About Us">Про нас</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('about-mission')" class="i18n" data-uk="Місія та Бачення" data-en="Mission & Vision">Місія та Бачення</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('about-team')" class="i18n" data-uk="Наша Команда" data-en="Our Team">Наша Команда</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('about-partners')" class="i18n" data-uk="Наші Партнери" data-en="Our Partners">Наші Партнери</a></li>
                         </ul>
                     </li>
                     <li>
-                        <!-- Клік на Діяльність перекидає на what-we-do (Розмінування) -->
-                        <a onclick="navigate('what-we-do')" class="i18n" data-uk="ДІЯЛЬНІСТЬ ▾" data-en="WHAT WE DO ▾">ДІЯЛЬНІСТЬ ▾</a>
+                        <a href="javascript:void(0)" onclick="handleNavClick(event, 'what-we-do')" class="i18n has-dropdown" data-uk="ДІЯЛЬНІСТЬ ▾" data-en="WHAT WE DO ▾">ДІЯЛЬНІСТЬ ▾</a>
                         <ul class="dropdown">
-                            <!-- Підпункти діяльності -->
-                            <li><a onclick="navigate('what-we-do')" class="i18n" data-uk="Розмінування та Безпека" data-en="Demining & Safety">Розмінування та Безпека</a></li>
-                            <li><a onclick="navigate('what-we-do-ecology')" class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</a></li>
-                            <li><a onclick="navigate('what-we-do-education')" class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</a></li>
-                            <li><a onclick="navigate('what-we-do-aid')" class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('what-we-do')" class="i18n" data-uk="Розмінування та Безпека" data-en="Demining & Safety">Розмінування та Безпека</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('what-we-do-ecology')" class="i18n" data-uk="Екологія та Відновлення" data-en="Ecology & Restoration">Екологія та Відновлення</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('what-we-do-education')" class="i18n" data-uk="Освіта (EORE)" data-en="Education (EORE)">Освіта (EORE)</a></li>
+                            <li><a href="javascript:void(0)" onclick="navigate('what-we-do-aid')" class="i18n" data-uk="Гуманітарна Допомога" data-en="Humanitarian Aid">Гуманітарна Допомога</a></li>
                         </ul>
                     </li>
-                    <li><a onclick="navigate('projects')" class="i18n" data-uk="ПРОЄКТИ" data-en="PROJECTS">ПРОЄКТИ</a></li>
-                    <li><a onclick="navigate('reports')" class="i18n" data-uk="ЗВІТИ" data-en="REPORTS">ЗВІТИ</a></li>
-                    <li><a onclick="navigate('contacts')" class="i18n" data-uk="КОНТАКТИ" data-en="CONTACTS">КОНТАКТИ</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('projects')" class="i18n" data-uk="ПРОЄКТИ" data-en="PROJECTS">ПРОЄКТИ</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('reports')" class="i18n" data-uk="ЗВІТИ" data-en="REPORTS">ЗВІТИ</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('contacts')" class="i18n" data-uk="КОНТАКТИ" data-en="CONTACTS">КОНТАКТИ</a></li>
                     <li><button class="btn-donate i18n" onclick="navigate('donate')" data-uk="ПІДТРИМАТИ" data-en="DONATE">ПІДТРИМАТИ</button></li>
                     <li class="lang-switcher">
                         <a href="javascript:void(0)" id="lang-uk" class="active" onclick="changeLanguage('uk')">UA</a> <span style="color: rgba(255,255,255,0.2); margin: 0 5px;">|</span> 
@@ -327,8 +386,8 @@
         </div>
     </header>
 
-    <main>
-        <!-- 1. ГОЛОВНА СТОРІНКА -->
+    <main id="main-content">
+        <!-- ГОЛОВНА -->
         <section id="home" class="page-section active" style="padding-bottom: 0;">
             <div class="hero">
                 <div class="hero-content">
@@ -338,6 +397,12 @@
                     <p class="i18n" data-uk="Благодійний фонд об'єднує зусилля для захисту життя та природи. Наша мета — очистити українську землю від мінної небезпеки та створити умови для процвітання майбутніх поколінь." data-en="The Charitable Fund unites efforts to protect life and nature. Our goal is to clear the land of danger and create conditions for future generations to thrive.">Благодійний фонд об'єднує зусилля для захисту життя та природи. Наша мета — очистити українську землю від мінної небезпеки та створити умови для процвітання майбутніх поколінь.</p>
                     <button class="btn-outline i18n" onclick="navigate('about')" data-uk="ДІЗНАТИСЯ БІЛЬШЕ" data-en="LEARN MORE">ДІЗНАТИСЯ БІЛЬШЕ</button>
                 </div>
+                <a href="javascript:void(0)" tabindex="0" class="hero-scroll-indicator i18n" data-uk="Прокрутіть" data-en="Scroll" onclick="document.querySelector('.home-intro').scrollIntoView({behavior:'smooth'})" aria-label="Scroll down">
+                    <span>Прокрутіть</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </a>
             </div>
 
             <div class="home-intro">
@@ -359,9 +424,7 @@
             </div>
         </section>
 
-        <!-- ============================================== -->
-        <!-- 2. ПРО НАС (РОЗДІЛ ТА ПІДСТОРІНКИ) -->
-        <!-- ============================================== -->
+        <!-- ПРО НАС -->
         <section id="about" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Хто Ми" data-en="Who We Are">Хто Ми</span>
@@ -372,11 +435,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Нова Земля, готова до процвітання" data-en="A New Earth, Ready to Flourish">Нова Земля, готова до процвітання</h2>
                     <p class="i18n" data-uk="БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує &quot;Нову Землю&quot; — очищену від небезпек, повністю відновлену та готову до процвітання життя." data-en="CHARITABLE FOUNDATION NOVATERRA is a team of like-minded professionals united by a shared vision: creating a safe living environment on Ukrainian soil. Established in early 2026, our foundation emerged not merely as an organization, but as a direct response to the critical challenges facing our ecology and national security. Our name, NovaTerra, symbolizes a &quot;New Earth&quot;—decontaminated from hazards, fully restored, and ready for life to flourish.">БЛАГОДІЙНИЙ ФОНД НОВАТЕРРА — це команда однодумців-професіоналів, об'єднаних спільним баченням: створення безпечного середовища для життя на українській землі. Заснований на початку 2026 року, наш фонд виник не просто як організація, а як пряма відповідь на критичні виклики, що постали перед нашою екологією та національною безпекою. Наша назва, NovaTerra, символізує "Нову Землю" — очищену від небезпек, повністю відновлену та готову до процвітання життя.</p>
-                    <img src="https://images.unsplash.com/photo-1646246401038-7bb79fcbca44?auto=format&fit=crop&q=80&w=1200" alt="" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1646246401038-7bb79fcbca44?auto=format&fit=crop&q=80&w=1200" alt="Команда фонду" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
+        <!-- МІСІЯ ТА БАЧЕННЯ -->
         <section id="about-mission" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Наша Мета" data-en="Our Goal">Наша Мета</span>
@@ -387,11 +451,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Захист, Відновлення та Сталий Розвиток" data-en="Protection, Recovery, and Sustainable Development">Захист, Відновлення та Сталий Розвиток</h2>
                     <p class="i18n" data-uk="Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі." data-en="Our mission is to restore a safe and resilient environment in Ukraine by deploying innovative solutions in mine action, ecological recovery, and comprehensive community support. We provide civilian protection against landmine threats, facilitate ecosystem regeneration, and equip local communities with the necessary tools for sustainable development. Every project we undertake is a direct contribution to a secure, green, and sovereign nation—where every individual feels safe and protected in their own home.">Наша місія — відновити безпечне та стійке середовище в Україні шляхом впровадження інноваційних рішень у сфері протимінної діяльності, екологічного відновлення та комплексної підтримки громад. Ми забезпечуємо захист цивільного населення від мінних загроз, сприяємо відновленню екосистем та надаємо місцевим громадам необхідні інструменти для сталого розвитку. Кожен наш проєкт — це прямий внесок у безпечну, зелену та суверенну націю, де кожна людина відчуває себе в безпеці та захищеною у власному домі.</p>
-                    <img src="https://images.unsplash.com/photo-1646825461394-b152ce852fdb?auto=format&fit=crop&q=80&w=1200" alt="" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1646825461394-b152ce852fdb?auto=format&fit=crop&q=80&w=1200" alt="Екологічне відновлення" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
+        <!-- НАША КОМАНДА -->
         <section id="about-team" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Експерти" data-en="Experts">Експерти</span>
@@ -405,17 +470,14 @@
                 </div>
                 
                 <div class="grid" style="margin-bottom: 40px; text-align: left;">
-                    <!-- Блок 1 -->
                     <div style="background: white; padding: 35px 25px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow);">
                         <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px;" data-uk="Віталій Ціолковський" data-en="Vitalii Tsiolkovskyi">Віталій Ціолковський</h3>
                         <p class="i18n" style="color: #666; margin-bottom: 0; font-size: 14px;" data-uk="Співзасновник, Спеціаліст з розмінування (EOD 3+)" data-en="Co-founder, Demining Specialist (EOD 3+)">Співзасновник, Спеціаліст з розмінування (EOD 3+)</p>
                     </div>
-                    <!-- Блок 2 -->
                     <div style="background: white; padding: 35px 25px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow);">
                         <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px;" data-uk="Василь Матухно" data-en="Vasyl Matukhno">Василь Матухно</h3>
                         <p class="i18n" style="color: #666; margin-bottom: 0; font-size: 14px;" data-uk="Співзасновник, Спеціаліст з розмінування" data-en="Co-founder, Demining Specialist">Співзасновник, Спеціаліст з розмінування</p>
                     </div>
-                    <!-- Блок 3 -->
                     <div style="background: white; padding: 35px 25px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow);">
                         <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.4rem; font-weight: 700; margin-bottom: 10px;" data-uk="Дмитро Базалієв" data-en="Dmytro Bazaliiev">Дмитро Базалієв</h3>
                         <p class="i18n" style="color: #666; margin-bottom: 0; font-size: 14px;" data-uk="Співзасновник, Спеціаліст з розмінування" data-en="Co-founder, Demining Specialist">Співзасновник, Спеціаліст з розмінування</p>
@@ -423,11 +485,12 @@
                 </div>
 
                 <div class="mission-text">
-                    <img src="https://images.unsplash.com/photo-1593305118776-5900e5bc5312?auto=format&fit=crop&q=80&w=1200" alt="" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1593305118776-5900e5bc5312?auto=format&fit=crop&q=80&w=1200" alt="Експертна робота" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
+        <!-- ПАРТНЕРИ -->
         <section id="about-partners" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Співпраця" data-en="Collaboration">Співпраця</span>
@@ -441,32 +504,25 @@
                 </div>
                 
                 <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px;">
-                    <!-- Блок партнера 1 -->
                     <div style="background: white; padding: 40px 30px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow); text-align: left; flex: 1 1 300px; max-width: 500px;">
-                        <img src="Folk_High_School_Vovchok.png" alt="" style="height: 60px; margin-bottom: 20px; display: block; max-width: 100%;">
+                        <img src="Folk_High_School_Vovchok.png" alt="Логотип Народна вища школа Вовчок" style="height: 60px; margin-bottom: 20px; display: block; max-width: 100%;">
                         <p class="i18n" style="color: #666; margin-bottom: 5px; font-size: 14px;" data-uk="Меморандум з Громадською організацією" data-en="Memorandum with the Public Organization">Меморандум з Громадською організацією</p>
                         <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.5rem; font-weight: 700; margin-bottom: 0;" data-uk='Народна вища школа "Вовчок"' data-en='Folk High School "Vovchok"'>Народна вища школа "Вовчок"</h3>
                     </div>
-                    
-                    <!-- Блок партнера 2 -->
                     <div style="background: white; padding: 40px 30px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow); text-align: left; flex: 1 1 300px; max-width: 500px;">
-                        <img src="Invictus_Gloval_Responce.png" alt="" style="height: 60px; margin-bottom: 20px; display: block; max-width: 100%;">
+                        <img src="Invictus_Gloval_Responce.png" alt="Логотип Invictus Global Response" style="height: 60px; margin-bottom: 20px; display: block; max-width: 100%;">
                         <p class="i18n" style="color: #666; margin-bottom: 5px; font-size: 14px;" data-uk="Меморандум з Громадською організацією" data-en="Memorandum with the Public Organization">Меморандум з Громадською організацією</p>
                         <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.5rem; font-weight: 700; margin-bottom: 0;" data-uk="Invictus Gloval Responce" data-en="Invictus Gloval Responce">Invictus Gloval Responce</h3>
                     </div>
                 </div>
 
                 <div class="mission-text">
-                    <img src="https://images.unsplash.com/photo-1647000854655-f2a89bf24d67?auto=format&fit=crop&q=80&w=1200" alt="" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1647000854655-f2a89bf24d67?auto=format&fit=crop&q=80&w=1200" alt="Співпраця" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- ============================================== -->
-        <!-- 3. ДІЯЛЬНІСТЬ (РОЗДІЛ ТА ПІДСТОРІНКИ) -->
-        <!-- ============================================== -->
-        
-        <!-- Основна сторінка Діяльності (збігається з "Розмінування та Безпека") -->
+        <!-- ДІЯЛЬНІСТЬ: Розмінування -->
         <section id="what-we-do" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Напрямок 01" data-en="Direction 01">Напрямок 01</span>
@@ -477,12 +533,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Ми зосереджуємо увагу на використанні дистанційних технологій задля гарантування безпеки" data-en="We focus on using remote technologies to ensure safety">Ми зосереджуємо увагу на використанні дистанційних технологій задля гарантування безпеки</h2>
                     <p class="i18n" data-uk="Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій." data-en="We identify, procure, and deploy cutting-edge demining technologies. Our focus is on high-tech robotic systems, heavy-duty machinery, specialized drones for thermal mapping, and advanced ballistic protection for field operators. By replacing manual labor with remote technology, we exponentially increase safety and operational speed.">Ми знаходимо, закуповуємо та впроваджуємо передові технології розмінування. Наш фокус — на високотехнологічних роботизованих системах, важкій техніці, спеціалізованих дронах для теплового картографування та вдосконаленому балістичному захисті для операторів у полі. Замінюючи ручну працю дистанційними технологіями, ми експоненційно підвищуємо безпеку та швидкість операцій.</p>
-                    <img src="202604251857.webp" alt="" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text='; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="202604251857.webp" alt="Процес розмінування" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text=Demining'; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Екологія та Відновлення -->
+        <!-- ДІЯЛЬНІСТЬ: Екологія -->
         <section id="what-we-do-ecology" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Напрямок 02" data-en="Direction 02">Напрямок 02</span>
@@ -493,12 +549,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Зцілення землі, більше ніж просто розмінування" data-en="Healing the Earth, Beyond De-mining">Зцілення землі, більше ніж просто розмінування</h2>
                     <p class="i18n" data-uk="Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання." data-en="Our mission is to restore soil health in war-torn regions. We support innovative ecological programs, including toxicity monitoring (heavy metals and explosives residue) and nature-based phytoremediation projects. By partnering with leading environmental scientists, we ensure that cleared lands are revitalized and safely return to sustainable agricultural use.">Наша місія — відновити здоров'я ґрунтів у постраждалих від війни регіонах. Ми підтримуємо інноваційні екологічні програми, включаючи моніторинг токсичності (залишки важких металів та вибухових речовин) і природоорієнтовані проєкти з фіторемедіації. Співпрацюючи з провідними вченими-екологами, ми гарантуємо, що очищені землі будуть відновлені та безпечно повернуті до сталого сільськогосподарського використання.</p>
-                    <img src="Ecology_&_Restoration.webp" alt="" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text='; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="Ecology_&_Restoration.webp" alt="Відновлення екології" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text=Ecology'; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Освіта EORE -->
+        <!-- ДІЯЛЬНІСТЬ: Освіта -->
         <section id="what-we-do-education" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Напрямок 03" data-en="Direction 03">Напрямок 03</span>
@@ -509,12 +565,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Розширення можливостей громад через знання" data-en="Empowering Communities Through Knowledge">Розширення можливостей громад через знання</h2>
                     <p class="i18n" data-uk="Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування." data-en="We fund and coordinate Explosive Ordnance Risk Education (EORE) programs, delivering life-saving knowledge to local communities and children. Additionally, we invest in &quot;Capacity Building&quot;: supporting specialized technical training and certification for technical advisors, drone operators, and grant managers to strengthen the national demining infrastructure.">Ми фінансуємо та координуємо програми інформування про мінну небезпеку (EORE), надаючи життєво важливі знання місцевим громадам та дітям. Крім того, ми інвестуємо в «Розбудову потенціалу»: підтримуємо спеціалізоване технічне навчання та сертифікацію технічних радників, операторів дронів і грант-менеджерів для зміцнення національної інфраструктури розмінування.</p>
-                    <img src="Education_(EORE).webp" alt="" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text='; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="Education_(EORE).webp" alt="Освіта з мінної небезпеки" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text=Education'; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
 
-        <!-- Гуманітарна Допомога -->
+        <!-- ДІЯЛЬНІСТЬ: Допомога -->
         <section id="what-we-do-aid" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Напрямок 04" data-en="Direction 04">Напрямок 04</span>
@@ -525,13 +581,12 @@
                 <div class="mission-text">
                     <h2 class="i18n" data-uk="Прозорий капітал для реального впливу" data-en="Transparent Capital for Impact">Прозорий капітал для реального впливу</h2>
                     <p class="i18n" data-uk="Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику." data-en="We activate global donor resources and manage them with strict accountability. Our fund strategically allocates grants to verified operational partners and accredited demining NGOs. Every funded project undergoes rigorous financial compliance monitoring and impact auditing, ensuring that resources are used efficiently to clear prioritized high-risk areas.">Ми залучаємо глобальні донорські ресурси та управляємо ними із суворою підзвітністю. Наш фонд стратегічно розподіляє гранти між перевіреними операційними партнерами та акредитованими неурядовими організаціями з розмінування. Кожен фінансований проєкт проходить ретельний моніторинг фінансової відповідності та аудит результативності, що гарантує ефективне використання ресурсів для очищення пріоритетних зон підвищеного ризику.</p>
-                    <img src="Humanitarian_Aid.webp" alt="" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text='; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
+                    <img src="Humanitarian_Aid.webp" alt="Гуманітарна допомога" onerror="this.src='https://placehold.co/1200x600/0A192F/FFD700?text=Humanitarian'; this.onerror=null;" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 4px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" loading="lazy">
                 </div>
             </div>
         </section>
-        <!-- ============================================== -->
 
-        <!-- 4. ПРОЄКТИ -->
+        <!-- ПРОЄКТИ -->
         <section id="projects" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Портфоліо" data-en="Portfolio">Портфоліо</span>
@@ -556,7 +611,7 @@
             </div>
         </section>
 
-        <!-- 5. ЗВІТИ -->
+        <!-- ЗВІТИ -->
         <section id="reports" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Прозорість" data-en="Transparency">Прозорість</span>
@@ -568,12 +623,12 @@
                 <div style="display: inline-block; background: white; padding: 40px 5%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 6px solid var(--accent-yellow); text-align: left; max-width: 100%;">
                     <h3 class="i18n" style="color: var(--primary-blue); font-size: 1.5rem; font-weight: 700; margin-bottom: 10px;" data-uk="Фінансовий аудит Q1 2026" data-en="Q1 2026 Financial Audit">Фінансовий аудит Q1 2026</h3>
                     <p class="i18n" style="color: #666; margin-bottom: 20px; font-size: 15px;" data-uk="Статус: Готується до публікації" data-en="Status: Preparing for publication">Статус: Готується до публікації</p>
-                    <a href="#" class="i18n" style="color: var(--primary-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 3px;" data-uk="Завантажити PDF (незабаром)" data-en="Download PDF (Coming soon)">Завантажити PDF (незабаром)</a>
+                    <a href="javascript:void(0)" class="i18n" style="color: var(--primary-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 3px;" data-uk="Завантажити PDF (незабаром)" data-en="Download PDF (Coming soon)">Завантажити PDF (незабаром)</a>
                 </div>
             </div>
         </section>
 
-        <!-- 6. КОНТАКТИ -->
+        <!-- КОНТАКТИ -->
         <section id="contacts" class="page-section">
             <div class="page-header">
                 <span class="badge i18n" data-uk="Зв'язок" data-en="Get in touch">Зв'язок</span>
@@ -590,7 +645,7 @@
                     
                     <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee;">
                         <p class="i18n" style="font-weight: 700; color: var(--primary-blue); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;" data-uk="Соціальні мережі:" data-en="Social Networks:">Соціальні мережі:</p>
-                        <a href="#" class="i18n" style="display: inline-block; margin-top: 10px; color: #0077b5; font-weight: 700; font-size: 15px;" data-uk="LinkedIn профіль &rarr;" data-en="LinkedIn profile &rarr;">LinkedIn профіль &rarr;</a>
+                        <a href="javascript:void(0)" class="i18n" style="display: inline-block; margin-top: 10px; color: #0077b5; font-weight: 700; font-size: 15px;" data-uk="LinkedIn профіль &rarr;" data-en="LinkedIn profile &rarr;">LinkedIn профіль &rarr;</a>
                     </div>
                 </div>
                 
@@ -603,7 +658,8 @@
                         </div>
                         <div class="form-group">
                             <label for="contact-info" class="i18n" data-uk="Email або Телефон" data-en="Email or Phone">Email або Телефон</label>
-                            <input type="text" name="contact_info" id="contact-info" class="i18n-placeholder" required autocomplete="email" data-uk="Ваші контактні дані" data-en="Your contact details" placeholder="Ваші контактні дані">
+                            <input type="text" name="contact_info" id="contact-info" class="i18n-placeholder" required autocomplete="email" inputmode="email" data-uk="Ваші контактні дані" data-en="Your contact details" placeholder="Ваші контактні дані">
+                            <small class="form-helper-text i18n" data-uk="Вкажіть email або номер телефону, щоб ми могли з вами звʼязатися" data-en="Provide an email or phone number so we can contact you">Вкажіть email або номер телефону, щоб ми могли з вами звʼязатися</small>
                         </div>
                         <div class="form-group">
                             <label for="contact-message" class="i18n" data-uk="Повідомлення" data-en="Message">Повідомлення</label>
@@ -615,7 +671,7 @@
             </div>
         </section>
 
-        <!-- 7. ПІДТРИМАТИ (DONATE) -->
+        <!-- ПІДТРИМАТИ (DONATE) -->
         <section id="donate" class="page-section">
             <div class="page-header" style="background-color: var(--primary-blue); border-bottom: 5px solid var(--accent-yellow);">
                 <span class="badge i18n" data-uk="Донат" data-en="Donate">Донат</span>
@@ -626,7 +682,6 @@
                 <h2 class="i18n" style="font-size: clamp(1.8rem, 5vw, 2.2rem); font-weight: 700; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 15px;" data-uk="Реквізити для внесків" data-en="Donation Details">Реквізити для внесків</h2>
                 <p class="i18n" style="margin-bottom: 40px; font-size: 1.15rem; color: #555;" data-uk="Оберіть зручний для вас спосіб підтримати нашу місію." data-en="Choose a convenient way to support our mission.">Оберіть зручний для вас спосіб підтримати нашу місію.</p>
                 
-                <!-- Залишено тільки 2 blocks: Банківський переказ та Картка онлайн -->
                 <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                     <div class="card" style="text-align: left;">
                         <h3 class="i18n" data-uk="Банківський переказ (IBAN)" data-en="Bank Transfer (IBAN)">Банківський переказ (IBAN)</h3>
@@ -654,10 +709,10 @@
             <div class="footer-col">
                 <h4 class="i18n" data-uk="Навігація" data-en="Navigation">Навігація</h4>
                 <ul>
-                    <li><a onclick="navigate('about')" style="cursor: pointer;" class="i18n" data-uk="Про нас" data-en="About Us">Про нас</a></li>
-                    <li><a onclick="navigate('what-we-do')" style="cursor: pointer;" class="i18n" data-uk="Діяльність" data-en="What We Do">Діяльність</a></li>
-                    <li><a onclick="navigate('projects')" style="cursor: pointer;" class="i18n" data-uk="Проєкти" data-en="Projects">Проєкти</a></li>
-                    <li><a onclick="navigate('reports')" style="cursor: pointer;" class="i18n" data-uk="Звітність" data-en="Reports">Звітність</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('about')" class="i18n" data-uk="Про нас" data-en="About Us">Про нас</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('what-we-do')" class="i18n" data-uk="Діяльність" data-en="What We Do">Діяльність</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('projects')" class="i18n" data-uk="Проєкти" data-en="Projects">Проєкти</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigate('reports')" class="i18n" data-uk="Звітність" data-en="Reports">Звітність</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -673,44 +728,178 @@
         </div>
     </footer>
 
-    <!-- СКРИПТ ДЛЯ ПЕРЕМИКАННЯ СТОРІНОК ТА МОВИ -->
+    <button class="scroll-to-top" id="scroll-to-top" onclick="scrollToTop()" aria-label="Прокрутити вгору">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
     <script>
-        // --- Відкриття/Закриття мобільного меню ---
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobile-nav');
-            nav.classList.toggle('nav-open');
+        // ==========================================================
+        // TOAST НОТИФІКАЦІЇ
+        // ==========================================================
+        function showToast({ type = 'info', title, message, duration = 5000 }) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+            const icons = { success: '✓', error: '✕', info: 'ℹ' };
+
+            toast.innerHTML = `
+                <div class="toast-icon" aria-hidden="true">${icons[type] || icons.info}</div>
+                <div class="toast-content">
+                    ${title ? `<div class="toast-title">${title}</div>` : ''}
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" aria-label="Закрити">×</button>
+            `;
+
+            const closeBtn = toast.querySelector('.toast-close');
+            const removeToast = () => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 300);
+            };
+            closeBtn.addEventListener('click', removeToast);
+
+            container.appendChild(toast);
+            if (duration > 0) setTimeout(removeToast, duration);
         }
 
-        // --- Закриття мобільного меню при кліку поза ним ---
+        // ==========================================================
+        // МОБІЛЬНЕ МЕНЮ ТА НАВІГАЦІЯ
+        // ==========================================================
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobile-nav');
+            const btn = document.getElementById('menu-toggle-btn');
+            const isOpen = nav.classList.toggle('nav-open');
+            btn.classList.toggle('active', isOpen);
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            
+            // Закриваємо всі відкриті дропдауни при перемиканні меню
+            document.querySelectorAll('#mobile-nav li').forEach(li => li.classList.remove('mobile-dropdown-open'));
+        }
+
+        // Нова функція для обробки кліків по пунктах з підменю на мобільних пристроях
+        function handleNavClick(event, targetPage) {
+            const isMobile = window.innerWidth <= 992;
+            const parentLi = event.target.closest('li');
+            
+            if (isMobile) {
+                // Якщо меню закрите - відкриваємо його і скасовуємо перехід
+                if (!parentLi.classList.contains('mobile-dropdown-open')) {
+                    event.preventDefault();
+                    // Закрити інші відкриті дропдауни
+                    document.querySelectorAll('#mobile-nav li.mobile-dropdown-open').forEach(li => {
+                        if (li !== parentLi) li.classList.remove('mobile-dropdown-open');
+                    });
+                    parentLi.classList.add('mobile-dropdown-open');
+                    return;
+                }
+                // Якщо меню вже відкрите - виконуємо перехід (поведінка за замовчуванням)
+            }
+            
+            navigate(targetPage);
+        }
+
         document.addEventListener('click', function(event) {
             const nav = document.getElementById('mobile-nav');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            // Якщо меню відкрите, і клік відбувся НЕ по меню та НЕ по кнопці гамбургера
+            const menuToggle = document.getElementById('menu-toggle-btn');
             if (nav.classList.contains('nav-open') && !nav.contains(event.target) && !menuToggle.contains(event.target)) {
                 nav.classList.remove('nav-open');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
 
-        // --- 1. Навігація між секціями ---
-        function navigate(pageId) {
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const nav = document.getElementById('mobile-nav');
+                const menuToggle = document.getElementById('menu-toggle-btn');
+                if (nav.classList.contains('nav-open')) {
+                    nav.classList.remove('nav-open');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+
+        const sectionToNavMap = {
+            'home': null,
+            'about': 'about', 'about-mission': 'about', 'about-team': 'about', 'about-partners': 'about',
+            'what-we-do': 'what-we-do', 'what-we-do-ecology': 'what-we-do',
+            'what-we-do-education': 'what-we-do', 'what-we-do-aid': 'what-we-do',
+            'projects': 'projects',
+            'reports': 'reports',
+            'contacts': 'contacts',
+            'donate': 'donate'
+        };
+
+        function navigate(pageId, options = {}) {
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.classList.remove('active'));
 
             const activeSection = document.getElementById(pageId);
             if (activeSection) {
                 activeSection.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Закриваємо мобільне меню після кліку
+                if (!options.skipHash) {
+                    const newHash = pageId === 'home' ? ' ' : '#' + pageId;
+                    if (window.location.hash !== newHash && pageId !== 'home') {
+                        history.pushState({ pageId }, '', '#' + pageId);
+                    } else if (pageId === 'home' && window.location.hash) {
+                        history.pushState({ pageId }, '', window.location.pathname);
+                    }
+                }
+
+                updatePageTitle(pageId);
+                updateActiveNavLink(pageId);
+                triggerRevealAnimations(activeSection);
+            }
+
+            window.scrollTo({ top: 0, behavior: options.smooth === false ? 'auto' : 'smooth' });
+
             const nav = document.getElementById('mobile-nav');
-            if(nav.classList.contains('nav-open')) {
+            const menuToggle = document.getElementById('menu-toggle-btn');
+            if (nav.classList.contains('nav-open')) {
                 nav.classList.remove('nav-open');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         }
 
-        // --- 2. Перемикання мови ---
+        function updatePageTitle(pageId) {
+            const section = document.getElementById(pageId);
+            if (!section) return;
+            const heading = section.querySelector('h1');
+            if (heading) {
+                const baseTitle = 'NOVATERRA';
+                const sectionTitle = heading.textContent.trim();
+                document.title = pageId === 'home' ? baseTitle + ' — Благодійний фонд відновлення України' : sectionTitle + ' | ' + baseTitle;
+            }
+        }
+
+        function updateActiveNavLink(pageId) {
+            document.querySelectorAll('nav a.active-link').forEach(a => a.classList.remove('active-link'));
+            const targetNavId = sectionToNavMap[pageId];
+            if (!targetNavId) return;
+
+            document.querySelectorAll('nav > ul > li > a').forEach(link => {
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if (onclickAttr.includes(`'${targetNavId}'`)) {
+                    link.classList.add('active-link');
+                }
+            });
+        }
+
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.slice(1) || 'home';
+            navigate(hash, { skipHash: true, smooth: false });
+        });
+
+        // ==========================================================
+        // ПЕРЕМИКАННЯ МОВИ
+        // ==========================================================
         let currentLang = 'uk';
         function changeLanguage(lang) {
             currentLang = lang;
@@ -719,7 +908,7 @@
                     el.innerHTML = el.getAttribute('data-' + lang);
                 }
             });
-            
+
             document.querySelectorAll('.i18n-placeholder').forEach(el => {
                 if (el.hasAttribute('data-' + lang)) {
                     el.setAttribute('placeholder', el.getAttribute('data-' + lang));
@@ -729,107 +918,170 @@
             document.getElementById('lang-uk').classList.remove('active');
             document.getElementById('lang-en').classList.remove('active');
             document.getElementById('lang-' + lang).classList.add('active');
-            
+
             document.documentElement.lang = lang;
+
+            try { localStorage.setItem('novaterra-lang', lang); } catch(e) {}
+
+            const currentSection = document.querySelector('.page-section.active');
+            if (currentSection) updatePageTitle(currentSection.id);
         }
 
-        // --- Функція копіювання реквізитів ---
-        function copyBankDetails() {
+        // ==========================================================
+        // КОПІЮВАННЯ
+        // ==========================================================
+        async function copyBankDetails() {
             const detailsText = 'БО "БФ "НОВАТЕРРА"\nЄДРПОУ: 45996333\nIBAN: UA0000000000000000000000';
-            
-            // Створюємо приховане текстове поле для копіювання (сумісно з усіма браузерами)
-            const tempTextArea = document.createElement("textarea");
-            tempTextArea.value = detailsText;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            tempTextArea.setSelectionRange(0, 99999); // Для мобільних пристроїв
+            const copyBtn = document.getElementById("copy-btn");
+            const originalText = copyBtn.innerHTML;
 
             try {
-                document.execCommand("copy");
-                const copyBtn = document.getElementById("copy-btn");
-                const originalText = copyBtn.innerHTML;
-                
-                // Змінюємо текст кнопки для візуального підтвердження
-                copyBtn.innerHTML = currentLang === 'en' ? 'Copied! ✔' : 'Скопійовано! ✔';
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(detailsText);
+                } else {
+                    const tempTextArea = document.createElement("textarea");
+                    tempTextArea.value = detailsText;
+                    tempTextArea.style.position = 'fixed';
+                    tempTextArea.style.opacity = '0';
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(tempTextArea);
+                }
+
+                copyBtn.innerHTML = currentLang === 'en' ? 'Copied! ✓' : 'Скопійовано! ✓';
                 copyBtn.style.backgroundColor = 'var(--accent-yellow)';
-                
+                copyBtn.style.borderColor = 'var(--accent-yellow)';
+
+                showToast({
+                    type: 'success',
+                    message: currentLang === 'en' ? 'Bank details copied to clipboard' : 'Реквізити скопійовано в буфер обміну',
+                    duration: 3000
+                });
+
                 setTimeout(() => {
                     copyBtn.innerHTML = originalText;
-                    copyBtn.style.backgroundColor = 'transparent';
-                }, 2000);
+                    copyBtn.style.backgroundColor = '';
+                    copyBtn.style.borderColor = '';
+                }, 2500);
             } catch (err) {
                 console.error("Помилка копіювання: ", err);
+                showToast({ type: 'error', message: currentLang === 'en' ? 'Could not copy. Please copy manually.' : 'Не вдалося скопіювати. Скопіюйте вручну.' });
             }
-            
-            document.body.removeChild(tempTextArea);
         }
 
-        // --- 3. Ініціалізація при завантаженні сторінки ---
-        document.addEventListener("DOMContentLoaded", () => {
-            // --- Автоматичне визначення мови браузера ---
-            const browserLang = navigator.language || navigator.userLanguage;
-            // Якщо мова браузера починається з 'uk' (українська), ставимо 'uk', для всіх інших - 'en'
-            if (browserLang.toLowerCase().startsWith('uk')) {
-                changeLanguage('uk');
-            } else {
-                changeLanguage('en');
-            }
+        // ==========================================================
+        // КНОПКА ВГОРУ
+        // ==========================================================
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        function handleScrollToTopVisibility() {
+            const btn = document.getElementById('scroll-to-top');
+            if (window.scrollY > 500) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        }
+        window.addEventListener('scroll', handleScrollToTopVisibility, { passive: true });
 
-            // --- Запасне завантаження фону (на випадок відсутності файлу локально) ---
+        // ==========================================================
+        // АНІМАЦІЇ СКРОЛУ
+        // ==========================================================
+        let revealObserver = null;
+        function initRevealAnimations() {
+            if (revealObserver) revealObserver.disconnect();
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+        }
+
+        function triggerRevealAnimations(container) {
+            const reveals = container.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                el.classList.remove('visible');
+                if (revealObserver) revealObserver.observe(el);
+            });
+        }
+
+        // ==========================================================
+        // ФОРМА (Google Apps Script)
+        // ==========================================================
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const originalBtnText = btn.innerHTML;
+                const isEnglish = currentLang === 'en';
+
+                if (!form.checkValidity()) {
+                    showToast({
+                        type: 'error', title: isEnglish ? 'Please check the form' : 'Перевірте форму',
+                        message: isEnglish ? 'Please fill in all required fields correctly.' : 'Будь ласка, заповніть усі обовʼязкові поля.',
+                    });
+                    form.reportValidity();
+                    return;
+                }
+
+                btn.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>${isEnglish ? 'SENDING...' : 'НАДСИЛАЄТЬСЯ...'}`;
+                btn.disabled = true; btn.style.opacity = '0.85'; btn.style.cursor = 'wait';
+
+                const formData = new FormData(form);
+
+                // Використовуємо mode: 'no-cors' для Google Apps Script. 
+                // Увага: ми не можемо перевірити, чи скрипт відпрацював успішно на сервері, 
+                // fetch() поверне успіх, якщо запит просто був відправлений.
+                fetch(form.action, { method: 'POST', mode: 'no-cors', body: formData })
+                .then(() => {
+                    showToast({
+                        type: 'success', title: isEnglish ? 'Message sent!' : 'Повідомлення надіслано!',
+                        message: isEnglish ? 'Thank you. We will contact you soon.' : 'Дякуємо! Ми звʼяжемося з вами найближчим часом.', duration: 6000
+                    });
+                    form.reset();
+                }).catch(error => {
+                    console.error('Form error:', error);
+                    showToast({
+                        type: 'error', title: isEnglish ? 'Sending failed' : 'Не вдалося надіслати',
+                        message: isEnglish ? 'Please check connection.' : 'Перевірте інтернет-зʼєднання.',
+                    });
+                }).finally(() => {
+                    btn.innerHTML = originalBtnText; btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = '';
+                });
+            });
+        }
+
+        // ==========================================================
+        // ІНІЦІАЛІЗАЦІЯ
+        // ==========================================================
+        function addRevealClasses() {
+            const selectors = ['.card', '.home-intro-text', '.home-intro-image', '.mission-text > h2', '.mission-text > p', '.mission-text > img', '.contact-info', '.contact-form'];
+            selectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal')));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let savedLang = null;
+            try { savedLang = localStorage.getItem('novaterra-lang'); } catch(e) {}
+            if (savedLang === 'uk' || savedLang === 'en') changeLanguage(savedLang);
+            else changeLanguage((navigator.language || navigator.userLanguage || 'en').toLowerCase().startsWith('uk') ? 'uk' : 'en');
+
             const hero = document.querySelector('.hero');
             const img = new Image();
-            // Намагаємось завантажити ваш новий референс
             img.src = 'Header 5.12.webp';
-            img.onerror = () => {
-                // Якщо його немає в папці, ставимо схожий епічний темний фон з інтернету для демонстрації
-                hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=2000&auto=format&fit=crop')";
-            };
-            
-            // --- Обробка відправки форми через AJAX для Google Apps Script ---
-            // Використовуємо no-cors режим, оскільки Google Apps Script не повертає
-            // CORS-заголовки. Запит надсилається успішно, але відповідь читати не можна.
-            // Тому будь-яка мережева помилка тут — це справжня проблема (offline, блокування тощо).
-            const form = document.getElementById('contactForm');
-            if(form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Зупиняємо стандартне перенаправлення
-                    
-                    const btn = form.querySelector('button[type="submit"]');
-                    const originalBtnText = btn.innerHTML;
-                    const isEnglish = document.getElementById('lang-en').classList.contains('active');
+            img.onerror = () => hero.style.backgroundImage = "linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.6) 50%, rgba(10, 25, 47, 0.2) 100%), url('https://images.unsplash.com/photo-1590005354167-6da97ce2311c?q=80&w=2000&auto=format&fit=crop')";
 
-                    // Перевірка на наявність правильного посилання Google Script (щоб не забули замінити)
-                    if (!form.action.includes('script.google.com/macros/s/')) {
-                        alert(isEnglish ? 'Please ensure your Google Script URL is set in the form action.' : 'Будь ласка, переконайтесь, що ви встановили правильне посилання Google Script у формі.');
-                        return;
-                    }
+            addRevealClasses();
+            initRevealAnimations();
+            initContactForm();
 
-                    btn.innerHTML = isEnglish ? 'SENDING...' : 'НАДСИЛАЄТЬСЯ...';
-                    btn.disabled = true;
-                    btn.style.opacity = '0.7';
-
-                    const formData = new FormData(form);
-
-                    fetch(form.action, {
-                        method: 'POST',
-                        mode: 'no-cors', // Google Apps Script не підтримує CORS — це норма
-                        body: formData  // FormData працює як multipart/form-data, з UTF-8 кирилицею без проблем
-                    }).then(() => {
-                        // У режимі no-cors відповідь є "opaque" — ми не можемо її прочитати,
-                        // але якщо fetch не кинув помилку, значить запит успішно надіслано
-                        alert(isEnglish ? 'Thank you! Your message has been sent successfully.' : 'Дякуємо! Ваше повідомлення успішно надіслано.');
-                        form.reset();
-                    }).catch(error => {
-                        // Сюди потрапляємо лише при реальних мережевих проблемах
-                        console.error('Form submission error:', error);
-                        alert(isEnglish ? 'Oops! There was a problem submitting your form. Please check your internet connection.' : 'Халепа! Виникла помилка при надсиланні форми. Перевірте інтернет-зʼєднання.');
-                    }).finally(() => {
-                        btn.innerHTML = originalBtnText;
-                        btn.disabled = false;
-                        btn.style.opacity = '1';
-                    });
-                });
-            }
+            const initialHash = window.location.hash.slice(1);
+            if (initialHash && document.getElementById(initialHash)) navigate(initialHash, { skipHash: true, smooth: false });
+            else { updateActiveNavLink('home'); updatePageTitle('home'); }
         });
     </script>
 </body>
