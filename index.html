@@ -551,7 +551,7 @@
                 
                 <div class="contact-form">
                     <h3 class="i18n" data-uk="Напишіть нам" data-en="Contact Form">Напишіть нам</h3>
-                    <form action="https://formspree.io/f/xbjnrvvj" method="POST" id="contactForm">
+                    <form action="https://formspree.io/f/mdabedpz" method="POST" id="contactForm">
                         <div class="form-group">
                             <label class="i18n" data-uk="Ваше ім'я" data-en="Name">Ваше ім'я</label>
                             <input type="text" name="name" id="contact-name" class="i18n-placeholder" required data-uk="Введіть ваше ім'я" data-en="Enter your name" placeholder="Введіть ваше ім'я">
@@ -750,6 +750,12 @@
                     const originalBtnText = btn.innerHTML;
                     const isEnglish = document.getElementById('lang-en').classList.contains('active');
                     
+                    // Перевірка на заглушку
+                    if (form.action.includes('YOUR_FORM_ID') || form.action.includes('xbjnrvvj')) {
+                        alert(isEnglish ? 'Please replace YOUR_FORM_ID with your actual Formspree ID in the HTML code.' : 'Будь ласка, замініть YOUR_FORM_ID на ваш справжній ID з Formspree у HTML коді.');
+                        return;
+                    }
+
                     btn.innerHTML = isEnglish ? 'SENDING...' : 'НАДСИЛАЄТЬСЯ...';
                     btn.disabled = true;
                     btn.style.opacity = '0.7';
