@@ -761,28 +761,43 @@
                     btn.style.opacity = '0.7';
 
                     const formData = new FormData(form);
+                    
+                    // Конвертуємо FormData у звичайний об'єкт JSON 
+                    // Це виправляє проблему з тим, як браузери кодують кирилицю
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
 
                     fetch(form.action, {
                         method: 'POST',
-                        body: formData,
+                        body: JSON.stringify(data),
                         headers: {
-                            'Accept': 'application/json'
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' // Вказуємо серверу, що це JSON-формат
                         }
                     }).then(response => {
                         if (response.ok) {
                             alert(isEnglish ? 'Thank you! Your message has been sent successfully.' : 'Дякуємо! Ваше повідомлення успішно надіслано.');
                             form.reset();
                         } else {
-                            response.json().then(data => {
-                                if (Object.hasOwn(data, 'errors')) {
-                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                            response.json().then(json => {
+                                if (Object.hasOwn(json, 'errors')) {
+                                    const errorMsg = json["errors"].map(error => error["message"]).join(", ");
+                                    if (errorMsg.toLowerCase().includes('not found')) {
+                                        alert(isEnglish ? 'Error: Form not found. Please check your Formspree ID.' : 'Помилка: Форму не знайдено. Будь ласка, перевірте ID у коді.');
+                                    } else {
+                                        alert(errorMsg);
+                                    }
                                 } else {
                                     alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
                                 }
+                            }).catch(() => {
+                                alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
                             });
                         }
                     }).catch(error => {
-                        alert(isEnglish ? 'Oops! There was a problem submitting your form.' : 'Халепа! Виникла помилка при надсиланні форми.');
+                        alert(isEnglish ? 'Oops! Network error. Please try again.' : 'Помилка мережі! Будь ласка, перевірте з\'єднання та спробуйте ще раз.');
                     }).finally(() => {
                         btn.innerHTML = originalBtnText;
                         btn.disabled = false;
