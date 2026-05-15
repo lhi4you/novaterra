@@ -409,7 +409,7 @@
                 <div class="home-intro-wrapper">
                     <div class="home-intro-text">
                         <span class="badge i18n" style="background: rgba(10, 25, 47, 0.05); color: var(--primary-blue); border-color: rgba(10, 25, 47, 0.1); margin-bottom: 15px;" data-uk="Наш Вплив" data-en="Our Impact">Наш Вплив</span>
-                        <h2 class="i18n" data-uk="Захищаємо кожне життя на українській землі" data-en="Protecting Every Life on Ukrainian Land">Захищаємо кожне життя на українській землі</h2>
+                        <h2 class="i18n" data-uk="Рятуємо життя через знання та навчання" data-en="Saving Lives Through Knowledge and Training">Рятуємо життя через знання та навчання</h2>
                         <p class="i18n" data-uk="Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього." data-en="Today, thousands of hectares of our land hide deadly danger. Our main mission is to save people's lives, protect children from the mine threat, and return safety to communities. Every demined meter is a step towards preserving our future.">Сьогодні тисячі гектарів наших земель приховують смертельну небезпеку. Наша головна місія — врятувати життя людей, захистити дітей від мінної загрози та повернути безпеку в громади. Кожен розмінований метр — це крок до збереження нашого майбутнього.</p>
                         <button class="btn-outline i18n" style="border-color: var(--primary-blue); color: var(--primary-blue);" onmouseover="this.style.background='var(--primary-blue)'; this.style.color='var(--accent-yellow)';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary-blue)';" onclick="navigate('what-we-do')" data-uk="НАШІ НАПРЯМКИ" data-en="OUR FOCUS">НАШІ НАПРЯМКИ</button>
                     </div>
@@ -594,8 +594,8 @@
                     <div class="card" style="border-top-color: #2196F3;">
                         <h3 class="i18n" data-uk="Цифрова безпека: Модулі EORE" data-en="Digital Safety: Interactive EORE Modules">Цифрова безпека: Модулі EORE</h3>
                         <p class="i18n" data-uk="<strong>Цільова аудиторія:</strong> Діти у прифронтових зонах<br><strong>Партнери:</strong> Міністерство Освіти, Tech Startups" data-en="<strong>Target Audience:</strong> Children in frontline zones<br><strong>Partners:</strong> Ministry of Education, Tech Startups"><strong>Цільова аудиторія:</strong> Діти у прифронтових зонах<br><strong>Партнери:</strong> Міністерство Освіти, Tech Startups</p>
-                        <p class="i18n" data-uk="Розробка інтерактивних навчальних EORE модулів та симуляторів дронів для шкіл, щоб навчити дітей розпізнавати загрози." data-en="Developing interactive EORE learning modules and drone simulators for schools in frontline communities.">Розробка інтерактивних навчальних EORE модулів та симуляторів дронів для шкіл, щоб навчити дітей розпізнавати загрози.</p>
-                        <button class="btn-outline i18n" style="margin-top: 15px; border-color: #e0e0e0; color: var(--primary-blue); opacity: 0.6; cursor: not-allowed;" data-uk="Долучитися до проєкту (Незабаром)" data-en="Express Interest (Coming soon)">Долучитися до проєкту (Незабаром)</button>
+                        <p class="i18n" data-uk="Розробка інтерактивних навчальних модулів по навчанню та інформування населення щодо ризиків, пов’язаних із вибухонебезпечними предметами (EORE)." data-en="Development of interactive learning modules for training and informing the population about risks associated with explosive ordnance (EORE).">Розробка інтерактивних навчальних модулів по навчанню та інформування населення щодо ризиків, пов’язаних із вибухонебезпечними предметами (EORE).</p>
+                        <button class="btn-outline i18n" style="margin-top: 15px; border-color: var(--primary-blue); color: var(--primary-blue);" data-uk="ПОДАТИ ЗАЯВКУ НА ДОСТУП" data-en="REQUEST ACCESS" onclick="navigate('contacts', { prefillMsg: { uk: 'Зацікавлений в отриманні доступу до цифрових модулів для навчання щодо ризику вибухонебезпечних предметів (EORE) / в запрошенні лектора.', en: 'Interested in getting access to digital modules for Explosive Ordnance Risk Education (EORE) / inviting a lecturer.' } })">ПОДАТИ ЗАЯВКУ НА ДОСТУП</button>
                     </div>
                 </div>
             </div>
@@ -845,6 +845,23 @@
                 updatePageTitle(pageId);
                 updateActiveNavLink(pageId);
                 triggerRevealAnimations(activeSection);
+
+                // Очищення або заповнення поля повідомлення у Контактах
+                if (pageId === 'contacts') {
+                    const messageField = document.getElementById('contact-message');
+                    if (messageField) {
+                        if (options.prefillMsg) {
+                            messageField.value = currentLang === 'en' ? options.prefillMsg.en : options.prefillMsg.uk;
+                            // Зберігаємо варіанти перекладу для динамічної зміни мови
+                            messageField.dataset.prefillUk = options.prefillMsg.uk;
+                            messageField.dataset.prefillEn = options.prefillMsg.en;
+                        } else {
+                            messageField.value = ''; // Очищаємо, якщо перейшли звичайним способом
+                            delete messageField.dataset.prefillUk;
+                            delete messageField.dataset.prefillEn;
+                        }
+                    }
+                }
             }
 
             window.scrollTo({ top: 0, behavior: options.smooth === false ? 'auto' : 'smooth' });
@@ -912,6 +929,18 @@
             document.documentElement.lang = lang;
 
             try { localStorage.setItem('novaterra-lang', lang); } catch(e) {}
+
+            // Динамічний переклад попередньо заповненого повідомлення
+            const messageField = document.getElementById('contact-message');
+            if (messageField && messageField.dataset.prefillUk && messageField.dataset.prefillEn) {
+                const prevLang = lang === 'uk' ? 'en' : 'uk';
+                const prevPrefill = prevLang === 'en' ? messageField.dataset.prefillEn : messageField.dataset.prefillUk;
+                
+                // Змінюємо текст тільки якщо користувач його ще не відредагував вручну
+                if (messageField.value === prevPrefill) {
+                    messageField.value = lang === 'en' ? messageField.dataset.prefillEn : messageField.dataset.prefillUk;
+                }
+            }
 
             const currentSection = document.querySelector('.page-section.active');
             if (currentSection) updatePageTitle(currentSection.id);
